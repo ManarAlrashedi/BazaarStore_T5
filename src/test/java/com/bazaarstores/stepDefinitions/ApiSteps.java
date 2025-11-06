@@ -2,14 +2,18 @@ package com.bazaarstores.stepDefinitions;
 
 
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
+
+import static com.bazaarstores.stepDefinitions.LoginSteps.emailco;
 import static com.bazaarstores.stepDefinitions.RegistrationSteps.email;
 import static com.bazaarstores.stepDefinitions.RegistrationSteps.fullName;
 import static com.bazaarstores.utilities.ApiUtilities.spec;
 import static io.restassured.RestAssured.given;
+import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 

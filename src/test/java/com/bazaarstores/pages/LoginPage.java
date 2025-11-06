@@ -4,16 +4,13 @@ import org.openqa.selenium.By;
 
 public class LoginPage extends BasePage {
 
-    // By Locators
     private final By emailInput = By.cssSelector("input[name='email'], input[type='email'], input[placeholder*='Email']");
     private final By passwordInput = By.cssSelector("input[name='password'], input[type='password']");
     private final By loginButton = By.xpath("//button[.='Log in']");
     private final By signUp = By.linkText("Sign up");
     private final By errorMessage = By.xpath("//*[@class='toast-message']");
-    private final By successMessage = By.cssSelector(".success, .success-message, [class*='success']");
 
-    // Fluent Methods
-    public LoginPage enterEmail(String email) {
+    public LoginPage enterEmail(String email){
         sendKeys(emailInput, email);
         return this;
     }
@@ -33,13 +30,6 @@ public class LoginPage extends BasePage {
         return new RegistrationPage();
     }
 
-    // Complete Login Method
-    public DashboardPage login(String email, String password) {
-        enterEmail(email);
-        enterPassword(password);
-        return clickLoginButton();
-    }
-
     // Verification Methods
     public boolean isLoginPageDisplayed() {
         return isDisplayed(emailInput) && isDisplayed(passwordInput);
@@ -47,18 +37,6 @@ public class LoginPage extends BasePage {
 
     public boolean isErrorMessageDisplayed() {
         return isDisplayed(errorMessage);
-    }
-
-    public String getErrorMessageText() {
-        return getText(errorMessage);
-    }
-
-    public boolean isSuccessMessageDisplayed() {
-        return isDisplayed(successMessage);
-    }
-
-    public String getSuccessMessageText() {
-        return getText(successMessage);
     }
 
     public boolean isValidationMessageDisplayed(String fieldName) {
