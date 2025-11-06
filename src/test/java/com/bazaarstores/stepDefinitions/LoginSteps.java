@@ -4,12 +4,15 @@ package com.bazaarstores.stepDefinitions;
 import com.bazaarstores.pages.AllPages;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.response.Response;
 import org.junit.Assert;
 
 
 public class LoginSteps {
     
     AllPages allPages = new AllPages();
+    public static String emailco;
+
 
     @When("user enters email {string} and password {string}")
     public void user_enters_email_and_password(String email, String password) {

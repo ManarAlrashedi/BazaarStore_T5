@@ -6,6 +6,7 @@ Feature: Login Functionality
     When user enters email "customer@sda.com" and password "Password.12345"
     And user clicks login button
     Then user should be logged in successfully
+    #And assert the successful login via API
 
   @Negative
   Scenario: Login with empty email
