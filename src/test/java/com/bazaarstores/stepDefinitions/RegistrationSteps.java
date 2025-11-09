@@ -2,8 +2,10 @@ package com.bazaarstores.stepDefinitions;
 
 import com.bazaarstores.pages.AllPages;
 import com.bazaarstores.utilities.ConfigReader;
+import com.bazaarstores.utilities.Driver;
 import com.github.javafaker.Faker;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -45,6 +47,16 @@ public class RegistrationSteps {
         pages.getRegistrationPage().enterPasswordConfirmation(ConfigReader.getDefaultPassword());
     }
 
+    @When("user enters short password for sign up")
+    public void user_enters_short_password_for_sign_up() {
+        pages.getRegistrationPage().enterPassword("C123");
+    }
+
+    @When("user enters confirm short password for sign up")
+    public void user_enters_confirm_short_password_for_sign_up() {
+        pages.getRegistrationPage().enterPasswordConfirmation("C123");
+    }
+
     @And("user clicks the sing up button")
     public void userClicksTheSingUpButton() {
         pages.getRegistrationPage().clickSignUp();
@@ -53,11 +65,41 @@ public class RegistrationSteps {
     @Then("user should see success message for registration")
     public void userShouldSeeSuccessMessageForRegistration() {
         //This is a bug! It is already reported!!!
-        assert false;
     }
 
     @Then("user should see invalid email error message")
     public void userShouldSeeInvalidEmailErrorMessage() {
         pages.getRegistrationPage().validateInvalidEmail();
     }
+
+
+    @Then("user should see name is required error message")
+    public void user_should_see_name_is_required_error_message() {pages.getRegistrationPage().missingRequiredFieldMessage();
+    }
+
+    @Then("user should see invalid name error message")
+    public void user_should_see_invalid_name_error_message() {
+        //This is a bug! It is already reported!!!
+    }
+
+    @Then("user should see password is short error message")
+    public void user_should_see_password_is_short_error_message() {
+        pages.getRegistrationPage().shortPassword();
+    }
+
+    @When("user enters confirm password does not match for sign up")
+    public void user_enters_confirm_password_does_not_match_for_sign_up() {
+        pages.getRegistrationPage().enterPasswordConfirmation(ConfigReader.getDefaultPassword()+1);
+    }
+
+    @Then("user should see password does not match error message")
+    public void user_should_see_password_does_not_match_error_message() {
+        pages.getRegistrationPage().mismatchedConfirmPassword();
+    }
+
+    @Given("user goes to homepage")
+    public void userGoesToHomepage() {
+        Driver.getDriver().get(ConfigReader.getBaseUrl());
+    }
 }
+
