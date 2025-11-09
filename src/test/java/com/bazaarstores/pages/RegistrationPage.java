@@ -14,6 +14,9 @@ public class RegistrationPage extends BasePage {
     private final By password_confirmation = By.name("password_confirmation");
     private final By signUp = By.xpath("//button[.='Sign Up']");
     private final By invalidEmailMessage = By.xpath("//li[.='The email field must be a valid email address.']");
+    private final By missingRequiredFieldMessage = By.xpath("//li[.='The name field is required.']");
+    private final By shortPassword = By.xpath("//li[.='The password field must be at least 6 characters.']");
+    private final By mismatchedConfirmPassword = By.xpath("//li[.='The password field confirmation does not match.']");
 
     public RegistrationPage enterEmail(String email) {
         Driver.getDriver().findElement(this.email).sendKeys(email);
@@ -48,5 +51,25 @@ public class RegistrationPage extends BasePage {
         return this;
     }
 
+    public RegistrationPage missingRequiredFieldMessage() {
+        assertEquals(
+                "The name field is required.",
+                Driver.getDriver().findElement(missingRequiredFieldMessage).getText()
+        );
+        return this;
+    }
 
+    public RegistrationPage shortPassword() {
+        assertEquals(
+                "The password field must be at least 6 characters.",
+                Driver.getDriver().findElement(shortPassword).getText());
+        return this;
+    }
+
+    public RegistrationPage mismatchedConfirmPassword() {
+        assertEquals(
+                "The password field confirmation does not match.",
+                Driver.getDriver().findElement(mismatchedConfirmPassword).getText());
+        return this;
+    }
 }
