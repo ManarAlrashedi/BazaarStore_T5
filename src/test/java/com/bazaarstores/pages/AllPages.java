@@ -6,6 +6,7 @@ public class AllPages {
     private RegistrationPage registrationPage;
     private DashboardPage dashboardPage;
     private ProductsPage productsPage;
+    private CustomerCartPage customerCartPage;
 
 
     public LoginPage getLoginPage() {
@@ -34,5 +35,12 @@ public class AllPages {
             productsPage = new ProductsPage();
         }
         return productsPage;
+    }
+
+    public CustomerCartPage getCustomerCartPage() {
+        if (customerCartPage == null) {
+            customerCartPage = new CustomerCartPage();
+        }
+        return customerCartPage;
     }
 }
