@@ -8,7 +8,6 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 
-import static com.bazaarstores.stepDefinitions.LoginSteps.emailco;
 import static com.bazaarstores.stepDefinitions.RegistrationSteps.email;
 import static com.bazaarstores.stepDefinitions.RegistrationSteps.fullName;
 import static com.bazaarstores.utilities.ApiUtilities.spec;
@@ -39,5 +38,11 @@ public class ApiSteps {
         JsonPath jsonPath = response.jsonPath();
         assertNull(jsonPath.getString("find{it.email=='" + email + "'}.name"));
         assertNull(jsonPath.getString("find{it.email=='" + email + "'}.email"));
+    }
+
+    @Then("assert the products catalog via API")
+    public void assert_the_products_catalog_via_api() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
     }
 }

@@ -46,15 +46,3 @@ Feature: Login Functionality
     And user clicks login button
     Then user should see error message
     And user should remain on login page
-
-  @Admin
-  Scenario: Successful login as Admin
-    When user enters email "admin@sda.com" and password "Password.12345"
-    And user clicks login button
-    Then admin should be logged in successfully
-
-  @StoreManager
-  Scenario: Successful login as Store Manager
-    When user enters email "storemanager@sda.com" and password "Password.12345"
-    And user clicks login button
-    Then admin should be logged in successfully

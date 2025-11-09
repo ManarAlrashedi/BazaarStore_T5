@@ -23,8 +23,7 @@ public abstract class BasePage {
     }
 
     // Helper method to find element
-    protected WebElement findElement(By locator) {
-        return Driver.getDriver().findElement(locator);
+    protected WebElement findElement(By locator) {return Driver.getDriver().findElement(locator);
     }
 
     protected List<WebElement> findElements(By locator) {
