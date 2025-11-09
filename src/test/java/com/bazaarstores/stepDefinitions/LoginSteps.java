@@ -2,6 +2,8 @@ package com.bazaarstores.stepDefinitions;
 
 
 import com.bazaarstores.pages.AllPages;
+import io.cucumber.java.PendingException;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
@@ -11,8 +13,6 @@ import org.junit.Assert;
 public class LoginSteps {
     
     AllPages allPages = new AllPages();
-    public static String emailco;
-
 
     @When("user enters email {string} and password {string}")
     public void user_enters_email_and_password(String email, String password) {
@@ -53,9 +53,30 @@ public class LoginSteps {
         allPages.getLoginPage().isValidationMessageDisplayed(field);
     }
 
-    @Then("admin should be logged in successfully")
-    public void adminShouldBeLoggedInSuccessfully() {
-        Assert.assertTrue("Profile visit chart should be displayed",
+    @Given("user is logged in as a {string}")
+    public void userIsLoggedInAsA(String role) {
+        String email;
+        String password = "Password.12345";
+
+        switch (role.toLowerCase()) {
+            case "customer":
+                email = "customer@sda.com";
+                break;
+            case "admin":
+                email = "admin@sda.com";
+                break;
+            case "store manager":
+                email = "storemanager@sda.com";
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid role: " + role);
+        }
+        allPages.getLoginPage()
+                .enterEmail(email)
+                .enterPassword(password)
+                .clickLoginButton();
+
+        Assert.assertTrue("Dashboard should be displayed",
                 allPages.getDashboardPage().isProfileVisitChartDisplayed());
-}
+    }
 }
