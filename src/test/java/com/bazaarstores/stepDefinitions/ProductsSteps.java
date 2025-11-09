@@ -1,0 +1,30 @@
+package com.bazaarstores.stepDefinitions;
+
+import com.bazaarstores.pages.AllPages;
+import io.cucumber.java.en.*;
+import org.junit.Assert;
+
+public class ProductsSteps {
+
+    AllPages allPages = new AllPages();
+
+    @When("store manager navigates to the products page")
+    public void store_manager_navigates_to_the_products_page() {
+        allPages.getDashboardPage().clickProductsLink();
+    }
+
+    @Then("verify the list of products displayed")
+    public void verify_the_list_of_products_displayed() {
+        Assert.assertTrue("Products page should be displayed",
+                allPages.getProductsPage().isProductsPageDisplayed());
+        Assert.assertTrue("Products table should be displayed",
+                allPages.getProductsPage().isProductsTableDisplayed());
+    }
+
+    @Then("each product should have a name, price, stoke, category, image, and action buttons")
+    public void each_product_should_have_a_name_price_stoke_category_image_and_action_buttons() {
+        Assert.assertTrue("Each product should have name, price, stock, category, image, and action buttons",
+                allPages.getProductsPage().areProductDetailsDisplayed());
+    }
+
+}

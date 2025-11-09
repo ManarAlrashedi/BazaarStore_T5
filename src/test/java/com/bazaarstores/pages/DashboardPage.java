@@ -10,7 +10,7 @@ public class DashboardPage extends BasePage {
     private final By welcomeMessage = By.cssSelector(".welcome-message, [class*='welcome']");
     private final By profileLink = By.cssSelector("a[href*='profile'], button:contains('Profile')");
     private final By ordersLink = By.cssSelector("a[href*='orders'], button:contains('Orders')");
-    private final By productsLink = By.linkText("Products");
+    private final By productsLink = By.xpath("//a[@class='sidebar-link']//span[.='Products']");
     private final By logoutButton = By.cssSelector("button:contains('Logout'), a:contains('Logout')");
     private final By userName = By.cssSelector(".user-name, [class*='username']");
 

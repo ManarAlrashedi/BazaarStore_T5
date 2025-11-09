@@ -5,7 +5,7 @@ public class AllPages {
     private LoginPage loginPage;
     private RegistrationPage registrationPage;
     private DashboardPage dashboardPage;
-    private StoresPage storesPage;
+    private ProductsPage productsPage;
 
 
     public LoginPage getLoginPage() {
@@ -29,11 +29,10 @@ public class AllPages {
         return dashboardPage;
     }
 
-
-    public StoresPage getStoresPage() {
-        if (storesPage == null) {
-            storesPage = new StoresPage();
+    public ProductsPage getProductsPage() {
+        if (productsPage == null) {
+            productsPage = new ProductsPage();
         }
-        return storesPage;
+        return productsPage;
     }
 }
