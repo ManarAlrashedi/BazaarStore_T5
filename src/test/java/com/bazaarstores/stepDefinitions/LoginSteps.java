@@ -21,6 +21,7 @@ public class LoginSteps {
 
     @When("user clicks login button")
     public void user_clicks_login_button() {
+
         allPages.getLoginPage().clickLoginButton();
     }
 

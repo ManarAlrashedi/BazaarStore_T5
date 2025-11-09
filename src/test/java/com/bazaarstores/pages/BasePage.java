@@ -24,6 +24,7 @@ public abstract class BasePage {
 
     // Helper method to find element
     protected WebElement findElement(By locator) {
+
         return Driver.getDriver().findElement(locator);
     }
 
@@ -202,6 +203,7 @@ public abstract class BasePage {
     }
 
     public void switchToDefaultContent() {
+
         Driver.getDriver().switchTo().defaultContent();
     }
 
@@ -224,6 +226,7 @@ public abstract class BasePage {
 
     // Screenshot Method
     public byte[] takeScreenshot() {
+
         return ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
     }
 }
