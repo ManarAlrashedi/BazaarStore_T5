@@ -14,11 +14,11 @@ import static com.bazaarstores.stepDefinitions.RegistrationSteps.email;
 import static com.bazaarstores.stepDefinitions.RegistrationSteps.fullName;
 import static com.bazaarstores.utilities.ApiUtilities.spec;
 import static io.restassured.RestAssured.given;
+import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 public class ApiSteps {
-
 
     @When("assert the registration via API")
     public void assertTheRegistrationViaAPI() {
@@ -56,4 +56,9 @@ public class ApiSteps {
         assertEquals(price, actualPrice);
     }
 
+    @Then("assert the store deletion via API")
+    public void assert_the_store_deletion_via_api() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
 }
