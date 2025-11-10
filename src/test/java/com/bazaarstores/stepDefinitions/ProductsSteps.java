@@ -12,6 +12,7 @@ public class ProductsSteps {
 
     @When("store manager navigates to the products page")
     public void store_manager_navigates_to_the_products_page() {
+
         allPages.getDashboardPage().clickProductsLink();
     }
 
@@ -29,6 +30,49 @@ public class ProductsSteps {
                 allPages.getProductsPage().areProductDetailsDisplayed());
     }
 
+
+    @When("the Store Manager clicks the delete button for a specific item")
+    public void the_store_manager_clicks_the_button_for_a_specific_item() {
+        allPages.getProductsPage().clickDeleteButton();
+
+    }
+
+    @When("confirms the deletion")
+    public void confirms_the_deletion() {
+
+        allPages.getProductsPage().clickConfirmDeleteButton();
+    }
+
+    @Then("a success message should appear")
+    public void a_success_message_should_appear() {
+       allPages.getProductsPage().SuccessDeleteMessage();
+
+    }
+
+    @And("clicks the cancel button")
+    public void clicksTheButton(String cancel) {
+
+    }
+
+    @Then("the product should still exist in the catalog")
+    public void theProductShouldStillExistInTheCatalog() {
+
+    }
+
+    @When("they search for the deleted proof {string}")
+    public void theySearchForTheDeletedProof() {
+
+    }
+
+    @Then("{string} should not appear in the catalog list")
+    public void shouldNotAppearInTheCatalogList() {
+
+    }
+
+    @And("the catalog should reflect the updated state")
+    public void theCatalogShouldReflectTheUpdatedState() {
+
+    }
     @And("user goes to the products page")
     public void user_goes_to_the_products_page() {
         allPages.getDashboardPage().clickProductsLink();

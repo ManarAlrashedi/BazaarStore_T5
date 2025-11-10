@@ -43,11 +43,4 @@ public class AllPages {
         }
         return customerCartPage;
     }
-
-    public StoresPage getStoresPage() {
-        if (storesPage == null) {
-            storesPage = new StoresPage();
-        }
-        return storesPage;
-    }
 }
