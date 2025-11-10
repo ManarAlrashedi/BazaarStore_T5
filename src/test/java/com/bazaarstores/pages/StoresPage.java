@@ -1,4 +1,8 @@
 package com.bazaarstores.pages;
 
-public class StoresPage {
-}
+    public class StoresPage extends BasePage {
+
+
+
+    }
+
