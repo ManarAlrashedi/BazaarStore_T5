@@ -4,6 +4,11 @@ import com.bazaarstores.pages.AllPages;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
 
+import java.time.Duration;
+
+import static com.bazaarstores.utilities.Driver.setImplicitWait;
+
+
 public class ProductsSteps {
 
     AllPages allPages = new AllPages();
@@ -36,39 +41,36 @@ public class ProductsSteps {
         allPages.getProductsPage().clickDeleteButton();
 
     }
+    @And("clicks the cancel button")
+    public void clicksTheButton() {
+        allPages.getProductsPage().clickCancelButton();
+
+    }
+    @Then("the product should still exist in the catalog")
+    public void theProductShouldStillExistInTheCatalog() {
+
+        Assert.assertTrue("This product still exist ! ",
+        allPages.getProductsPage().isProductsDisplayed());
+
+    }
+
 
     @When("confirms the deletion")
     public void confirms_the_deletion() {
-
         allPages.getProductsPage().clickConfirmDeleteButton();
     }
 
     @Then("a success message should appear")
     public void a_success_message_should_appear() {
-       allPages.getProductsPage().SuccessDeleteMessage();
+
+        allPages.getProductsPage().SuccessDeleteMessage();
+        setImplicitWait();
 
     }
-    @Then("{string} should not appear in the catalog list")
-    public void shouldNotAppearInTheCatalogList() {
-
-    }
-
-    @And("clicks the cancel button")
-    public void clicksTheButton(String cancel) {
-        allPages.getProductsPage().clickCancelButton();
-
-    }
-
-    @Then("the product should still exist in the catalog")
-    public void theProductShouldStillExistInTheCatalog() {
-
-    }
-
-
 
     @And("the catalog should reflect the updated state")
     public void theCatalogShouldReflectTheUpdatedState() {
-
+            Assert.assertFalse(allPages.getProductsPage().isProductsDisplayed());
     }
 
 
