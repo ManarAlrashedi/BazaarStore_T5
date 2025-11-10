@@ -44,6 +44,7 @@ public class ApiSteps {
 
     @And("assert the successful login via API")
     public void assertTheSuccessfulLoginViaAPI() {
+
         Response response = given(spec()).get("/users");
         JsonPath jsonPath = response.jsonPath();
 
@@ -58,6 +59,7 @@ public class ApiSteps {
 
     @And("assert the negative login via API")
     public void assertTheNegativeLoginViaAPI() {
+
         Response response = given(spec()).get("/users");
         JsonPath jsonPath = response.jsonPath();
 
@@ -72,6 +74,7 @@ public class ApiSteps {
 
     @And("assert the negative login via API using email {string}")
     public void assertTheNegativeLoginViaAPIUsingEmail(String email) {
+
         Response response = given(spec()).get("/users");
         JsonPath jsonPath = response.jsonPath();
 

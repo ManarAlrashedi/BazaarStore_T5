@@ -1,7 +1,7 @@
 @Regression @Login
 Feature: Login Functionality
 
-  @Smoke @Customer
+  @HappyPath
   Scenario: Successful login with valid credentials
     When user enters email "customer@sda.com" and password "Password.12345"
     And user clicks login button

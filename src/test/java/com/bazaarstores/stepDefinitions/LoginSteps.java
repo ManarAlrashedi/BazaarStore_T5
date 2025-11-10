@@ -15,7 +15,7 @@ public class LoginSteps {
 
     @When("user enters email {string} and password {string}")
     public void user_enters_email_and_password(String email, String password) {
-        LoginSteps.loginEmail =email;
+        LoginSteps.loginEmail = email;
         allPages.getLoginPage().enterEmail(email).enterPassword(password);
     }
 
