@@ -1,9 +1,14 @@
 package com.bazaarstores.pages;
 
+import com.bazaarstores.utilities.Driver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 
 public class ProductsPage extends BasePage{
@@ -11,6 +16,13 @@ public class ProductsPage extends BasePage{
     private final By pageTitle = By.tagName("h3");
     private final By productsTable = By.id("table-bordered");
     private final By productsRows = By.xpath("//div[@class='table-responsive']");
+    private final By edit = By.xpath("//table//tbody//tr[1]//td[6]//button[1]");
+    private final By price = By.id("price-column");
+    private final By submit = By.cssSelector("button[type='submit']");
+    private final By stock = By.id("stock-column");
+    private final By missingRequiredFieldMessage = By.xpath("//li[.='The stock field is required.']");
+    private final By successMessage = By.xpath("//div[@class='toast-title']");
+
 
     public boolean isProductsPageDisplayed() {
         return isDisplayed(pageTitle) && getText(pageTitle).equals("Products");
@@ -64,5 +76,48 @@ public class ProductsPage extends BasePage{
             }
         }
         return true;
+    }
+
+    public ProductsPage edit() {
+        Driver.getDriver().findElement(edit).click();
+        return this;
+    }
+
+    public ProductsPage price(String price) {
+        Driver.getDriver().findElement(this.price).clear();
+        Driver.getDriver().findElement(this.price).sendKeys(price);
+        return this;
+    }
+
+    public ProductsPage catalog() {
+        WebElement categoryDropdown = Driver.getDriver().findElement(By.id("category-column"));
+        Select select = new Select(categoryDropdown);
+        select.selectByIndex(1);
+        return this; }
+
+    public ProductsPage stock() {
+        Driver.getDriver().findElement(stock).clear();
+        return this;
+    }
+
+    public ProductsPage submit() {
+        ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].click()",
+                Driver.getDriver().findElement(submit));
+        return this;
+    }
+
+    public ProductsPage missingRequiredFieldMessage() {
+        assertEquals(
+                "The stock field is required.",
+                Driver.getDriver().findElement(missingRequiredFieldMessage).getText()
+        );
+        return this;
+    }
+
+    public ProductsPage successMessage() {
+        assertEquals("Success",
+                Driver.getDriver().findElement(successMessage).getText()
+        );
+        return this;
     }
 }
