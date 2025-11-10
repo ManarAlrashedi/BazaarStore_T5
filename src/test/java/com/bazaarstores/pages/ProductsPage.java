@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+
 public class ProductsPage extends BasePage {
 
     private final By pageTitle = By.tagName("h3");
@@ -14,6 +16,7 @@ public class ProductsPage extends BasePage {
     private final By deletebutton = By.xpath("//*[@id=\"table-bordered\"]//table//tbody//tr//td[6]/button[2]");
     private final By confirmdeletebutton = By.xpath("/html/body/div[2]/div/div[6]/button[1]");
     private final By cancelbutton = By.xpath("/html/body/div[2]/div/div[6]/button[3]");
+    private final By successMessage = By.xpath("//div[@class='toast-title']");
 
     public boolean isProductsPageDisplayed() {
 
@@ -84,6 +87,13 @@ public class ProductsPage extends BasePage {
         return this;
     }    public ProductsPage clickConfirmDeleteButton() {
         Driver.getDriver().findElement(this.confirmdeletebutton).click();
+        return this;
+    }
+
+    public ProductsPage SuccessDeleteMessage() {
+        assertEquals(
+                "Product deleted successfully!",
+                Driver.getDriver().findElement(this.successMessage).getText());
         return this;
     }
 

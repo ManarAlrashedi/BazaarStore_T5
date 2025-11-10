@@ -1,12 +1,12 @@
 package com.bazaarstores.stepDefinitions;
 
 
+import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-
 
 import static com.bazaarstores.stepDefinitions.RegistrationSteps.email;
 import static com.bazaarstores.stepDefinitions.RegistrationSteps.fullName;
@@ -44,5 +44,20 @@ public class ApiSteps {
     public void assert_the_products_catalog_via_api() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
+    }
+
+
+    @And("assert the product been removed via API")
+    public void assertTheProductBeenRemovedViaAPI() {
+        Response response = given(spec()).get("/products");
+        JsonPath jsonPath = response.jsonPath();
+        assertNull(jsonPath.getString(
+                "find{it.email=='" + email + "'}.catalog "
+                        +"find{it.email=='" + email + "'}.NAME"
+                        + "find{it.email=='" + email + "'}.PRICE"
+                        + "find{it.email=='" + email + "'}.STOCK"
+                        + "find{it.email=='" + email + "'}.CATEGORY"
+
+        ));
     }
 }

@@ -29,30 +29,26 @@ public class ProductsSteps {
     }
 
 
-    @When("the Store Manager clicks the {string} button for a specific item")
-    public void the_store_manager_clicks_the_button_for_a_specific_item(String string) {
+    @When("the Store Manager clicks the delete button for a specific item")
+    public void the_store_manager_clicks_the_button_for_a_specific_item() {
         allPages.getProductsPage().clickDeleteButton();
 
     }
 
     @When("confirms the deletion")
     public void confirms_the_deletion() {
+
         allPages.getProductsPage().clickConfirmDeleteButton();
     }
 
     @Then("a success message should appear")
     public void a_success_message_should_appear() {
-
-
-    }
-
-    @Then("the product should be removed from the list")
-    public void the_product_should_be_removed_from_the_list() {
+       allPages.getProductsPage().SuccessDeleteMessage();
 
     }
 
-    @And("clicks the {string} button")
-    public void clicksTheButton(String arg0) {
+    @And("clicks the cancel button")
+    public void clicksTheButton(String cancel) {
 
     }
 
@@ -62,12 +58,12 @@ public class ProductsSteps {
     }
 
     @When("they search for the deleted proof {string}")
-    public void theySearchForTheDeletedProof(String arg0) {
+    public void theySearchForTheDeletedProof() {
 
     }
 
     @Then("{string} should not appear in the catalog list")
-    public void shouldNotAppearInTheCatalogList(String arg0) {
+    public void shouldNotAppearInTheCatalogList() {
 
     }
 

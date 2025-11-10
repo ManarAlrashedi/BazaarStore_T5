@@ -3,16 +3,16 @@ Feature: Store Manager Functionality
   @ManagerDeleteProduct
   Scenario: Verify that Store Manager can delete any item
     Given user is logged in as a "store manager"
-    When the Store Manager clicks the "Delete" button for a specific item
+    When the Store Manager clicks the delete button for a specific item
     And confirms the deletion
     Then a success message should appear
-    And the product should be removed from the list
+    And assert the product been removed via API
 
   @CancelDelete
   Scenario: Verify Store Manager cancels deletion from confirmation dialog
     Given user is logged in as a "store manager"
-    When the Store Manager clicks the "Delete" button for a specific item
-    And clicks the "Cancel" button
+    When the Store Manager clicks the delete button for a specific item
+    And clicks the cancel button
     Then the product should still exist in the catalog
 
   @DeletionProof
