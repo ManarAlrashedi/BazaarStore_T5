@@ -45,4 +45,10 @@ public class ApiSteps {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
+
+    @Then("assert the store deletion via API")
+    public void assert_the_store_deletion_via_api() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
 }
