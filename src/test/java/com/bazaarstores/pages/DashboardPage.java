@@ -40,6 +40,7 @@ public class DashboardPage extends BasePage {
 
     // Verification Methods
     public boolean isDashboardPageDisplayed() {
+
         return isDisplayed(dashboard);
     }
 

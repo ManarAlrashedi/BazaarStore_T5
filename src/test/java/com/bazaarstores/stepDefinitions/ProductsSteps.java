@@ -12,6 +12,7 @@ public class ProductsSteps {
 
     @When("store manager navigates to the products page")
     public void store_manager_navigates_to_the_products_page() {
+
         allPages.getDashboardPage().clickProductsLink();
     }
 
@@ -29,13 +30,58 @@ public class ProductsSteps {
                 allPages.getProductsPage().areProductDetailsDisplayed());
     }
 
+
+    @When("the Store Manager clicks the delete button for a specific item")
+    public void the_store_manager_clicks_the_button_for_a_specific_item() {
+        allPages.getProductsPage().clickDeleteButton();
+
+    }
+
+    @When("confirms the deletion")
+    public void confirms_the_deletion() {
+
+        allPages.getProductsPage().clickConfirmDeleteButton();
+    }
+
+    @Then("a success message should appear")
+    public void a_success_message_should_appear() {
+       allPages.getProductsPage().SuccessDeleteMessage();
+
+    }
+    @Then("{string} should not appear in the catalog list")
+    public void shouldNotAppearInTheCatalogList() {
+
+    }
+
+    @And("clicks the cancel button")
+    public void clicksTheButton(String cancel) {
+        allPages.getProductsPage().clickCancelButton();
+
+    }
+
+    @Then("the product should still exist in the catalog")
+    public void theProductShouldStillExistInTheCatalog() {
+
+    }
+
+
+
+    @And("the catalog should reflect the updated state")
+    public void theCatalogShouldReflectTheUpdatedState() {
+
+    }
+
+
+
     @And("user goes to the products page")
     public void user_goes_to_the_products_page() {
+
         allPages.getDashboardPage().clickProductsLink();
     }
 
     @When("user clicks the edit button")
-    public void user_clicks_the_edit_button() {allPages.getProductsPage().edit();}
+    public void user_clicks_the_edit_button()
+    {allPages.getProductsPage().edit();}
 
     @When("user  Edit the price")
     public void user_edit_the_price() {

@@ -103,4 +103,19 @@ public class ApiSteps {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
+
+
+    @When("assert the product been removed via API")
+    public void assertTheProductBeenRemovedViaAPI() {
+        Response response = given(spec()).get("/products");
+        JsonPath jsonPath = response.jsonPath();
+        assertNull(jsonPath.getString(
+                "find{it.email=='" + email + "'}.catalog "
+                        +"find{it.email=='" + email + "'}.NAME"
+                        + "find{it.email=='" + email + "'}.PRICE"
+                        + "find{it.email=='" + email + "'}.STOCK"
+                        + "find{it.email=='" + email + "'}.CATEGORY"
+
+        ));
+    }
 }
