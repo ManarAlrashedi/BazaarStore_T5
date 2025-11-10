@@ -28,12 +28,14 @@ public class DeleteStoreSteps {
                 allPages.getStoresPage().isDeleteConfirmationDialogDisplayed());
 
     }
+
     @When("admin user confirms the deletion")
     public void admin_user_confirms_the_deletion() {
         allPages.getStoresPage().confirmDeleteStore();
         Assert.assertTrue("Store should be deleted successfully",
                 allPages.getStoresPage().isStoreDeletedMessageDisplayed());
     }
+
     @Then("the store should be removed from the store list")
     public void the_store_should_be_removed_from_the_store_list() {
         Assert.assertTrue("Store should be removed from the list",

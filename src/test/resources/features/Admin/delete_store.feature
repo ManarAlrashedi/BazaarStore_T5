@@ -10,4 +10,4 @@ Feature: Delete Store as an Admin
       And admin user clicks delete button for a store
       And admin user confirms the deletion
       Then the store should be removed from the store list
-      #And assert the store deletion via API
+       #And assert the store deletion via API

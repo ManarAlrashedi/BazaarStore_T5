@@ -12,7 +12,6 @@ public class StoresPage extends BasePage{
     private final By confirmButton = By.cssSelector("button.swal2-confirm.swal2-styled.swal2-default-outline");
     private final By deletedMessage = By.xpath("//div[@class='toast-title']");
 
-
     public boolean isStoresPageDisplayed() {
         return isDisplayed(pageTitle) && getText(pageTitle).equals("STORES");
     }
@@ -29,7 +28,6 @@ public class StoresPage extends BasePage{
         clickWithJS(deleteButtons);
         return this;
     }
-
 
     public boolean isDeleteConfirmationDialogDisplayed() {
         return isDisplayed(confirmationDialog);
