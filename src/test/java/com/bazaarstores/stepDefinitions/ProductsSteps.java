@@ -48,9 +48,14 @@ public class ProductsSteps {
        allPages.getProductsPage().SuccessDeleteMessage();
 
     }
+    @Then("{string} should not appear in the catalog list")
+    public void shouldNotAppearInTheCatalogList() {
+
+    }
 
     @And("clicks the cancel button")
     public void clicksTheButton(String cancel) {
+        allPages.getProductsPage().clickCancelButton();
 
     }
 
@@ -59,27 +64,24 @@ public class ProductsSteps {
 
     }
 
-    @When("they search for the deleted proof {string}")
-    public void theySearchForTheDeletedProof() {
 
-    }
-
-    @Then("{string} should not appear in the catalog list")
-    public void shouldNotAppearInTheCatalogList() {
-
-    }
 
     @And("the catalog should reflect the updated state")
     public void theCatalogShouldReflectTheUpdatedState() {
 
     }
+
+
+
     @And("user goes to the products page")
     public void user_goes_to_the_products_page() {
+
         allPages.getDashboardPage().clickProductsLink();
     }
 
     @When("user clicks the edit button")
-    public void user_clicks_the_edit_button() {allPages.getProductsPage().edit();}
+    public void user_clicks_the_edit_button()
+    {allPages.getProductsPage().edit();}
 
     @When("user  Edit the price")
     public void user_edit_the_price() {

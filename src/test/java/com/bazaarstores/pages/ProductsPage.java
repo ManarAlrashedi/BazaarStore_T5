@@ -25,7 +25,6 @@ public class ProductsPage extends BasePage {
     private final By submit = By.cssSelector("button[type='submit']");
     private final By stock = By.id("stock-column");
     private final By missingRequiredFieldMessage = By.xpath("//li[.='The stock field is required.']");
-    private final By successMessage = By.xpath("//div[@class='toast-title']");
 
 
     public boolean isProductsPageDisplayed() {

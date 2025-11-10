@@ -64,7 +64,7 @@ public class ApiSteps {
     }
 
 
-    @And("assert the product been removed via API")
+    @When("assert the product been removed via API")
     public void assertTheProductBeenRemovedViaAPI() {
         Response response = given(spec()).get("/products");
         JsonPath jsonPath = response.jsonPath();

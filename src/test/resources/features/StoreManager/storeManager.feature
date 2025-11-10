@@ -1,3 +1,14 @@
+Feature: Products Catalog View Feature
+
+  @ViewCatalog
+  Scenario: Store Manager Views Products Catalog
+    Given user is logged in as a "store manager"
+    When store manager navigates to the products page
+    Then verify the list of products displayed
+    And each product should have a name, price, stoke, category, image, and action buttons
+    And assert the products catalog via API
+
+  @DeleteProduct
 Feature: Store Manager Functionality
 
   @ManagerDeleteProduct
@@ -6,7 +17,6 @@ Feature: Store Manager Functionality
     When the Store Manager clicks the delete button for a specific item
     And confirms the deletion
     Then a success message should appear
-    And assert the product been removed via API
 
   @CancelDelete
   Scenario: Verify Store Manager cancels deletion from confirmation dialog
@@ -18,9 +28,10 @@ Feature: Store Manager Functionality
   @DeletionProof
   Scenario: Verify deleted proof is not listed in catalog
     Given user is logged in as a "store manager"
-    When they search for the deleted proof "@example"
-    Then "@example" should not appear in the catalog list
-    And the catalog should reflect the updated state
+    When assert the product been removed via API
+    Then the catalog should reflect the updated state
+
+
 @UpdateProduct
 Feature: Update Products Feature
 
