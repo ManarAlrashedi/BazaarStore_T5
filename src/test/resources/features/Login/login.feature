@@ -6,25 +6,28 @@ Feature: Login Functionality
     When user enters email "customer@sda.com" and password "Password.12345"
     And user clicks login button
     Then user should be logged in successfully
-    #And assert the successful login via API
+    And assert the successful login via API
 
   @Negative
   Scenario: Login with empty email
     When user enters email "" and password "Password.12345"
     And user clicks login button
     Then user should see empty "email" error message
+    And assert the negative login via API
 
   @Negative
   Scenario: Login with empty password
     When user enters email "customer@sda.com" and password ""
     And user clicks login button
     Then user should see empty "password" error message
+    And assert the negative login via API using email "customer@sda.com"
 
   @Negative
   Scenario: Login with empty email and password
     When user enters email "" and password ""
     And user clicks login button
     Then user should see empty "email" error message
+    And assert the negative login via API
 
   @Negative
   Scenario: Login with email not available
@@ -32,6 +35,7 @@ Feature: Login Functionality
     And user clicks login button
     Then user should see error message
     And user should remain on login page
+    And assert the negative login via API
 
   @Negative
   Scenario: Login without @ symbol
@@ -39,6 +43,7 @@ Feature: Login Functionality
     And user clicks login button
     Then user should see invalid "email" error message
     And user should remain on login page
+    And assert the negative login via API
 
   @Negative
   Scenario: Login with an incorrect password
@@ -46,3 +51,4 @@ Feature: Login Functionality
     And user clicks login button
     Then user should see error message
     And user should remain on login page
+    And assert the negative login via API using email "customer@sda.com"

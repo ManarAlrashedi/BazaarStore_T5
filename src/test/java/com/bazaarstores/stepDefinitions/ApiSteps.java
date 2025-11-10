@@ -1,6 +1,7 @@
 package com.bazaarstores.stepDefinitions;
 
 
+import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -8,6 +9,7 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 
+import static com.bazaarstores.stepDefinitions.LoginSteps.loginEmail;
 import static com.bazaarstores.stepDefinitions.ProductsSteps.catalog;
 import static com.bazaarstores.stepDefinitions.ProductsSteps.price;
 import static com.bazaarstores.stepDefinitions.RegistrationSteps.email;
@@ -38,6 +40,46 @@ public class ApiSteps {
         JsonPath jsonPath = response.jsonPath();
         assertNull(jsonPath.getString("find{it.email=='" + email + "'}.name"));
         assertNull(jsonPath.getString("find{it.email=='" + email + "'}.email"));
+    }
+
+    @And("assert the successful login via API")
+    public void assertTheSuccessfulLoginViaAPI() {
+        Response response = given(spec()).get("/users");
+        JsonPath jsonPath = response.jsonPath();
+
+        String actualEmail = jsonPath.getString("find{it.email=='" + loginEmail + "'}.email");
+        String actualName = jsonPath.getString("find{it.email=='" + loginEmail + "'}.name");
+        String userRole = jsonPath.getString("find{it.email=='" + loginEmail + "'}.role");
+
+        assertEquals(loginEmail, actualEmail);
+        assertNotNull(actualName);
+        assertNotNull(userRole);
+    }
+
+    @And("assert the negative login via API")
+    public void assertTheNegativeLoginViaAPI() {
+        Response response = given(spec()).get("/users");
+        JsonPath jsonPath = response.jsonPath();
+
+        String actualEmail = jsonPath.getString("find{it.email=='" + loginEmail + "'}.email");
+        String actualName = jsonPath.getString("find{it.email=='" + loginEmail + "'}.name");
+        String userRole = jsonPath.getString("find{it.email=='" + loginEmail + "'}.role");
+
+        assertNull(actualEmail);
+        assertNull(actualName);
+        assertNull(userRole);
+    }
+
+    @And("assert the negative login via API using email {string}")
+    public void assertTheNegativeLoginViaAPIUsingEmail(String email) {
+        Response response = given(spec()).get("/users");
+        JsonPath jsonPath = response.jsonPath();
+
+        String actualEmail = jsonPath.getString("find{it.email=='" + email + "'}.email");
+        String actualName = jsonPath.getString("find{it.email=='" + email + "'}.name");
+
+        assertNotNull(actualEmail);
+        assertNotNull(actualName);
     }
 
     @Then("assert the products catalog via API")
