@@ -20,7 +20,6 @@ import static org.junit.Assert.assertNull;
 
 public class ApiSteps {
 
-
     @When("assert the registration via API")
     public void assertTheRegistrationViaAPI() {
         Response response = given(spec()).get("/users");
@@ -31,7 +30,6 @@ public class ApiSteps {
         assertEquals(email, actualEmail);
         assertEquals(fullName, actualName);
     }
-
 
     @And("assert the negative registration via API using email {string}")
     public void assertTheNegativeRegistrationViaAPIUsingEmail(String email) {
@@ -57,7 +55,6 @@ public class ApiSteps {
         String actualPrice = jsonPath.getString("find{it.email=='" + email + "'}.catalog");
         assertEquals(price, actualPrice);
     }
-
 
     @Then("assert the store deletion via API")
     public void assert_the_store_deletion_via_api() {
