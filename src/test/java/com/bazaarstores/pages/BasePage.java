@@ -85,6 +85,7 @@ public abstract class BasePage {
     }
 
     public String getValidationMessage(By locator) {
+
         return getAttribute(locator, "validationMessage");
     }
 

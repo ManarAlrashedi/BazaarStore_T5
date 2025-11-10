@@ -2,7 +2,13 @@ package com.bazaarstores.utilities;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static io.restassured.RestAssured.given;
 
 public class ApiUtilities {
 
@@ -11,9 +17,18 @@ public class ApiUtilities {
                 .setBaseUri(ConfigReader.getApiBaseUrl())
                 .setContentType(ContentType.JSON)
                 .addHeader("Accept", "application/json")
-                .addHeader("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2JhemFhcnN0b3Jlcy5jb20vYXBpL2xvZ2luIiwiaWF0IjoxNzYyMzI4ODQ3LCJleHAiOjE3NjIzMzI0NDcsIm5iZiI6MTc2MjMyODg0NywianRpIjoiNmptRnFVYkVrbE1KZmoydCIsInN1YiI6IjM1NCIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.7dzHfBHoDkFfSzT2IlMotN9rcnnaX9ZaWj8AakBBq6o")
+                .addHeader("Authorization", "Bearer " + getToken())
                 .build();
     }
 
-
+    private static String getToken() {
+        Map payload = new HashMap();
+        payload.put("email", ConfigReader.getAdminEmail());
+        payload.put("password", ConfigReader.getDefaultPassword());
+        Response response = given()
+                .body(payload)
+                .contentType(ContentType.JSON)
+                .post(ConfigReader.getApiBaseUrl() + "/login");
+        return response.jsonPath().getString("authorisation.token");
+    }
 }

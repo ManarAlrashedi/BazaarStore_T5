@@ -13,6 +13,7 @@ public class DashboardPage extends BasePage {
     private final By productsLink = By.xpath("//a[@class='sidebar-link']//span[.='Products']");
     private final By logoutButton = By.cssSelector("button:contains('Logout'), a:contains('Logout')");
     private final By userName = By.cssSelector(".user-name, [class*='username']");
+    private final By storeLink = By.xpath("//a[@class='sidebar-link']//span[.='Store']");
 
 
     // Navigation Methods
@@ -26,6 +27,10 @@ public class DashboardPage extends BasePage {
 
     public void clickProductsLink() {
         click(productsLink);
+    }
+
+    public void clickStoreLink() {
+        click(storeLink);
     }
 
     public LoginPage clickLogout() {
