@@ -69,6 +69,7 @@ public class RegistrationSteps {
 
     @Then("user should see invalid email error message")
     public void userShouldSeeInvalidEmailErrorMessage() {
+
         pages.getRegistrationPage().validateInvalidEmail();
     }
 

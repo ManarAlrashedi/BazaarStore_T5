@@ -9,31 +9,35 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 
 
-public class ProductsPage extends BasePage{
+public class ProductsPage extends BasePage {
 
     private final By pageTitle = By.tagName("h3");
     private final By productsTable = By.id("table-bordered");
     private final By productsRows = By.xpath("//div[@class='table-responsive']");
+    private final By deletebutton = By.xpath("//tr[td[contains(.,'Hayatesting')]]//i[@class='bi bi-trash3']");
+    private final By confirmdeletebutton = By.xpath("/html/body/div[2]/div/div[6]/button[1]");
+    private final By cancelbutton = By.xpath("/html/body/div[2]/div/div[6]/button[3]");
+    private final By successMessage = By.xpath("//div[@class='toast-title']");
     private final By edit = By.xpath("//table//tbody//tr[1]//td[6]//button[1]");
     private final By price = By.id("price-column");
     private final By submit = By.cssSelector("button[type='submit']");
     private final By stock = By.id("stock-column");
     private final By name = By.id("name-column");
     private final By missingRequiredFieldMessage = By.xpath("//li[.='The stock field is required.']");
-    private final By successMessage = By.xpath("//div[@class='toast-title']");
-
+    private final By ProductToBeDeleted = By.xpath("//table//tr//td[contains(text(),'Hayatesting')]");
 
     public boolean isProductsPageDisplayed() {
+
         return isDisplayed(pageTitle) && getText(pageTitle).equals("Products");
     }
 
     public boolean isProductsTableDisplayed() {
         return isDisplayed(productsTable);
     }
+
     public int getProductsCount() {
         List<WebElement> rows = findElements(productsRows);
         return rows.size();
@@ -43,22 +47,27 @@ public class ProductsPage extends BasePage{
         By productNameLocator = By.xpath("(//td[@class='py-2 px-4 border-b'])[" + index + "]");
         return getText(productNameLocator);
     }
+
     public String getProductPrice(int index) {
         By productPriceLocator = By.xpath("(//td[@class='py-2 px-4 border-b'])[" + index + "]");
         return getText(productPriceLocator);
     }
+
     public String getProductStoke(int index) {
         By productStokeLocator = By.xpath("(//td[@class='py-2 px-4 border-b'])[" + index + "]");
         return getText(productStokeLocator);
     }
+
     public String getProductCategory(int index) {
         By productCategoryLocator = By.xpath("(//td[@class='py-2 px-4 border-b'])[" + index + "]");
         return getText(productCategoryLocator);
     }
+
     public String getProductImage(int index) {
         By productImageLocator = By.xpath("(//td[@class='py-2 px-4 border-b'])[" + index + "]");
         return getText(productImageLocator);
     }
+
     public String getProductAction(int index) {
         By productActionLocator = By.xpath("(//td[@class='py-2 px-4 border-b'])[" + index + "]");
         return getText(productActionLocator);
@@ -80,6 +89,33 @@ public class ProductsPage extends BasePage{
         }
         return true;
     }
+
+    public ProductsPage clickDeleteButton() {
+        click(this.deletebutton);
+        return this;
+    }
+
+       public ProductsPage clickCancelButton() {
+           click(this.cancelbutton);
+        return this;
+    }
+    public ProductsPage clickConfirmDeleteButton() {
+        click(this.confirmdeletebutton);
+        return this;
+    }
+
+    public ProductsPage SuccessDeleteMessage() {
+        assertEquals(
+                "Success",
+                getText(this.successMessage));
+        return this;
+    }
+    public boolean isProductsDisplayed() {
+
+        return isDisplayed(ProductToBeDeleted);
+    }
+
+
 
     public ProductsPage edit() {
         Driver.getDriver().findElement(edit).click();
