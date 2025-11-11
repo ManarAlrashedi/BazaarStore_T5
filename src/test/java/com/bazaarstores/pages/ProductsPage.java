@@ -89,23 +89,23 @@ public class ProductsPage extends BasePage {
     }
 
     public ProductsPage clickDeleteButton() {
-        Driver.getDriver().findElement(this.deletebutton).click();
+        click(this.deletebutton);
         return this;
     }
 
        public ProductsPage clickCancelButton() {
-        Driver.getDriver().findElement(this.cancelbutton).click();
+           click(this.cancelbutton);
         return this;
     }
     public ProductsPage clickConfirmDeleteButton() {
-        Driver.getDriver().findElement(this.confirmdeletebutton).click();
+        click(this.confirmdeletebutton);
         return this;
     }
 
     public ProductsPage SuccessDeleteMessage() {
         assertEquals(
                 "Success",
-                Driver.getDriver().findElement(this.successMessage).getText());
+                getText(this.successMessage));
         return this;
     }
     public boolean isProductsDisplayed() {

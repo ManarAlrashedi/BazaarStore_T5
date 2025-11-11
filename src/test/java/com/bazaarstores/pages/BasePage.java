@@ -165,6 +165,7 @@ public abstract class BasePage {
     public void scrollToElement(By locator) {
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
         js.executeScript("arguments[0].scrollIntoView(true);", findElement(locator));
+        js.executeScript("window.scrollBy(0, -150)",findElement(locator));
     }
 
     public void scrollToBottom() {
