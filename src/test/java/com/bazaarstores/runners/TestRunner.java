@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
         },
         features = "src/test/resources/features",
         glue = "com/bazaarstores/stepDefinitions",
-        tags = "@DeletionProof",
+        tags = "@DeleteStoreNegative",
         dryRun = false
 )
 public class TestRunner {
