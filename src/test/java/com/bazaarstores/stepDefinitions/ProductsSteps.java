@@ -1,14 +1,16 @@
 package com.bazaarstores.stepDefinitions;
 
 import com.bazaarstores.pages.AllPages;
+import com.github.javafaker.Faker;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
 
 public class ProductsSteps {
 
     AllPages allPages = new AllPages();
-    public static String price;
+    public static String price= Faker.instance().number().digits(2).toString();
     public static String catalog;
+    public static String name;
 
     @When("store manager navigates to the products page")
     public void store_manager_navigates_to_the_products_page() {
@@ -39,7 +41,7 @@ public class ProductsSteps {
 
     @When("user  Edit the price")
     public void user_edit_the_price() {
-        allPages.getProductsPage().price("400.00");
+        allPages.getProductsPage().price(price);
     }
 
     @When("user  Edit the catalog")

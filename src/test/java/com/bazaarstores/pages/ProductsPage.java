@@ -1,6 +1,8 @@
 package com.bazaarstores.pages;
 
+import com.bazaarstores.stepDefinitions.ProductsSteps;
 import com.bazaarstores.utilities.Driver;
+import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -20,6 +22,7 @@ public class ProductsPage extends BasePage{
     private final By price = By.id("price-column");
     private final By submit = By.cssSelector("button[type='submit']");
     private final By stock = By.id("stock-column");
+    private final By name = By.id("name-column");
     private final By missingRequiredFieldMessage = By.xpath("//li[.='The stock field is required.']");
     private final By successMessage = By.xpath("//div[@class='toast-title']");
 
@@ -84,6 +87,7 @@ public class ProductsPage extends BasePage{
     }
 
     public ProductsPage price(String price) {
+        ProductsSteps.name=Driver.getDriver().findElement(name).getAttribute("value");
         Driver.getDriver().findElement(this.price).clear();
         Driver.getDriver().findElement(this.price).sendKeys(price);
         return this;
@@ -92,7 +96,8 @@ public class ProductsPage extends BasePage{
     public ProductsPage catalog() {
         WebElement categoryDropdown = Driver.getDriver().findElement(By.id("category-column"));
         Select select = new Select(categoryDropdown);
-        select.selectByIndex(1);
+        select.selectByIndex(Faker.instance().number().numberBetween(1,3));
+        ProductsSteps.name=Driver.getDriver().findElement(name).getAttribute("value");
         return this; }
 
     public ProductsPage stock() {

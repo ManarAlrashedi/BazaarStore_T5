@@ -7,16 +7,11 @@ import io.cucumber.java.en.When;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
-
-import static com.bazaarstores.stepDefinitions.ProductsSteps.catalog;
-import static com.bazaarstores.stepDefinitions.ProductsSteps.price;
 import static com.bazaarstores.stepDefinitions.RegistrationSteps.email;
 import static com.bazaarstores.stepDefinitions.RegistrationSteps.fullName;
 import static com.bazaarstores.utilities.ApiUtilities.spec;
 import static io.restassured.RestAssured.given;
-import static junit.framework.TestCase.assertNotNull;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 public class ApiSteps {
 
@@ -44,21 +39,40 @@ public class ApiSteps {
     public void assert_the_products_catalog_via_api() {
         Response response = given(spec()).get("/products");
         JsonPath jsonPath = response.jsonPath();
-        String actualCatalog = jsonPath.getString("find{it.email=='" + email + "'}.catalog");
-        assertEquals(catalog, actualCatalog);
+        String actualCatalog = jsonPath.getString("find{it.name=='" + ProductsSteps.name + "'}.catalog");
+        assertEquals(ProductsSteps.catalog, actualCatalog);
     }
 
-    @Then("assert the price catalog via API")
-    public void assert_the_price_catalog_via_api() {
+    @Then("assert the price updated via API")
+    public void assert_the_price_updated_via_api() {
         Response response = given(spec()).get("/products");
         JsonPath jsonPath = response.jsonPath();
-        String actualPrice = jsonPath.getString("find{it.email=='" + email + "'}.catalog");
-        assertEquals(price, actualPrice);
+        String actualPrice = jsonPath.getString("find{it.name=='" + ProductsSteps.name + "'}.price");
+        assertEquals(Double.parseDouble(ProductsSteps.price), Double.parseDouble(actualPrice), 0.001);
     }
 
     @Then("assert the store deletion via API")
     public void assert_the_store_deletion_via_api() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
+    }
+
+    @Then("assert the updated data via API")
+    public void assert_the_updated_data_via_api() {
+//        Response response = given(spec()).get("/stores");
+//        JsonPath jsonPath = response.jsonPath();
+//        assertEquals(StoreSteps.name, jsonPath.getString("find{it.name=='" + StoreSteps.name + "'}.name"));
+//        assertEquals(StoreSteps.loaction, jsonPath.getString("find{it.name=='" + StoreSteps.name + "'}.location"));
+//        String desc = jsonPath.getString("find{it.name==contains(text(),"+StoreSteps.name+"') + "'}.description");
+//        assertTrue(StoreSteps.description.contains(desc));
+//        assertEquals(StoreSteps.description,jsonPath.getString("find{it.name=='" + StoreSteps.name + "'}.description"));
+
+    }
+
+    @And("assert the negative editing via API")
+    public void assert_the_negative_editing_via_API() {
+        Response response = given(spec()).get("/stores");
+        JsonPath jsonPath = response.jsonPath();
+        assertNotNull(jsonPath.getString("find{it.name=='" + StoreSteps.originalName + "'}.name"));
     }
 }
