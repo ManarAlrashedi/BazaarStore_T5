@@ -56,10 +56,15 @@ public class Driver {
         return driver.get();
     }
 
+    public static void setImplicitWait() {
+        driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+    }
+
     public static void quitDriver() {
         if (driver.get() != null) {
             driver.get().quit();
             driver.remove();
         }
+
     }
 }

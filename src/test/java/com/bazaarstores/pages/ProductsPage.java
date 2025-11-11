@@ -16,7 +16,7 @@ public class ProductsPage extends BasePage {
     private final By pageTitle = By.tagName("h3");
     private final By productsTable = By.id("table-bordered");
     private final By productsRows = By.xpath("//div[@class='table-responsive']");
-    private final By deletebutton = By.xpath("//*[@id=\"table-bordered\"]//table//tbody//tr//td[6]/button[2]");
+    private final By deletebutton = By.xpath("//tr[td[contains(.,'Hayatesting')]]//i[@class='bi bi-trash3']");
     private final By confirmdeletebutton = By.xpath("/html/body/div[2]/div/div[6]/button[1]");
     private final By cancelbutton = By.xpath("/html/body/div[2]/div/div[6]/button[3]");
     private final By successMessage = By.xpath("//div[@class='toast-title']");
@@ -25,7 +25,7 @@ public class ProductsPage extends BasePage {
     private final By submit = By.cssSelector("button[type='submit']");
     private final By stock = By.id("stock-column");
     private final By missingRequiredFieldMessage = By.xpath("//li[.='The stock field is required.']");
-
+    private final By ProductToBeDeleted = By.xpath("//table//tr//td[contains(text(),'Hayatesting')]");
 
     public boolean isProductsPageDisplayed() {
 
@@ -87,25 +87,31 @@ public class ProductsPage extends BasePage {
         }
         return true;
     }
+
     public ProductsPage clickDeleteButton() {
         Driver.getDriver().findElement(this.deletebutton).click();
         return this;
     }
+
        public ProductsPage clickCancelButton() {
         Driver.getDriver().findElement(this.cancelbutton).click();
         return this;
-    }    public ProductsPage clickConfirmDeleteButton() {
+    }
+    public ProductsPage clickConfirmDeleteButton() {
         Driver.getDriver().findElement(this.confirmdeletebutton).click();
         return this;
     }
 
     public ProductsPage SuccessDeleteMessage() {
         assertEquals(
-                "Product deleted successfully!",
+                "Success",
                 Driver.getDriver().findElement(this.successMessage).getText());
         return this;
     }
+    public boolean isProductsDisplayed() {
 
+        return isDisplayed(ProductToBeDeleted);
+    }
 
 
 

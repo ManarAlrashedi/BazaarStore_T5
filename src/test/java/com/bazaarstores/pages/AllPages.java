@@ -30,6 +30,12 @@ public class AllPages {
         }
         return dashboardPage;
     }
+    public StoresPage getStoresPage() {
+        if (storesPage == null) {
+            storesPage = new StoresPage();
+        }
+        return storesPage;
+    }
 
     public ProductsPage getProductsPage() {
         if (productsPage == null) {
