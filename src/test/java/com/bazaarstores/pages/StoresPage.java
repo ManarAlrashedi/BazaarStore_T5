@@ -56,4 +56,15 @@ public class StoresPage extends BasePage{
     public void cancelDeleteStore() {
         click(cancelButton);
     }
-}
+
+        private final By storeList = By.cssSelector(".store-item");
+
+        public int getNumberOfStores() {
+            return findElements(storeList).size();
+        }
+
+        public boolean isStoresListDisplayed() {
+            return isDisplayed(storeList);
+        }
+    }
+

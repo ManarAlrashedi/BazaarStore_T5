@@ -31,4 +31,19 @@ public class CustomerCartPage extends BasePage{
         return this;
     }
 
-}
+        private final By cartItems = By.cssSelector(".cart-item");
+        private final By checkoutButton = By.xpath("//button[contains(text(),'Checkout')]");
+
+        public int getNumberOfItemsInCart() {
+            return findElements(cartItems).size();
+        }
+
+        public void clickCheckout() {
+            click(checkoutButton);
+        }
+
+        public boolean isCartDisplayed() {
+            return isDisplayed(cartItems);
+        }
+    }
+
