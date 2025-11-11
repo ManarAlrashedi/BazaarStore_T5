@@ -25,9 +25,6 @@ public class AdminActionsSteps {
         allPages.getStoresPage().ClickAddStoreButton();
     }
 
-
-
-
     @Then("message from all the requireds field displayed")
     public void messageFromAllTheRequiredsFieldDisplayed() {
        allPages.getCreateStorePage()
@@ -45,8 +42,6 @@ public class AdminActionsSteps {
 
 
     }
-
-
 
     @Then("A validation message for the Name field should be displayed")
     public void aValidationMessageForTheNameFieldShouldBeDisplayed() {
@@ -82,7 +77,6 @@ public class AdminActionsSteps {
         allPages.getCreateStorePage().missingDescription();
 
     }
-
 
     @When("the Admin fills in all required fields with valid data")
     public void theAdminFillsInAllRequiredFieldsWithValidData() {
@@ -130,7 +124,6 @@ public class AdminActionsSteps {
 
     }
 
-
     @When("admin user navigates to store management page")
     public void admin_user_navigates_to_store_management_page() {
         allPages.getDashboardPage().clickStoreLink();
@@ -144,9 +137,9 @@ public class AdminActionsSteps {
                 allPages.getStoresPage().getStoresCount() > 0);
     }
 
-    @When("admin user clicks delete button for a store")
-    public void admin_user_clicks_delete_button_for_a_store() {
-        allPages.getStoresPage().clickDeleteStore();
+    @When("admin user clicks delete button for a {string}")
+    public void admin_user_clicks_delete_button_for_a_store(String storeName) {
+        allPages.getStoresPage().clickDeleteStore(storeName);
         Assert.assertTrue("Confirmation dialog should be displayed",
                 allPages.getStoresPage().isDeleteConfirmationDialogDisplayed());
 
@@ -162,7 +155,20 @@ public class AdminActionsSteps {
     @Then("the store should be removed from the store list")
     public void the_store_should_be_removed_from_the_store_list() {
         Assert.assertTrue("Store should be removed from the list",
-                allPages.getStoresPage().isStorePresentInList());
+                allPages.getStoresPage().isStoreRemoveFromList());
+    }
+
+    @And("admin user cancel the deletion")
+    public void adminUserCancelTheDeletion() {
+        allPages.getStoresPage().cancelDeleteStore();
+        Assert.assertTrue("Confirmation dialog should be closed",
+                allPages.getStoresPage().isDeleteConfirmationDialogDisplayed());
+    }
+
+    @Then("the store should still be present in the store list")
+    public void theStoreShouldStillBePresentInTheStoreList() {
+        Assert.assertTrue("Store should still be present in the list",
+                allPages.getStoresPage().isStoreStillPresentInList());
     }
 
 
