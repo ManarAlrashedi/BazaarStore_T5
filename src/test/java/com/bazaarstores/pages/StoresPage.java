@@ -2,12 +2,12 @@ package com.bazaarstores.pages;
 
 import org.openqa.selenium.By;
 
-public class StoresPage extends BasePage{
+public class StoresPage extends BasePage {
 
     private final By pageTitle = By.tagName("h3");
-    private final By lastStoreName = By.xpath("//tbody//tr[last()]");
+    private final By storeName = By.xpath("//tr[td[contains(.,'%s')]]");
     private final By storesRows = By.xpath("//div[@class='table-responsive']//tbody//tr");
-    private final By deleteButtons = By.xpath("(//button[@type='button'])[last()]");
+    private final String deleteButtons = "//tr[td[contains(.,'%s')]]//i[@class='bi bi-trash3']";
     private final By confirmationDialog = By.xpath("//div[@role='dialog']");
     private final By confirmButton = By.cssSelector("button.swal2-confirm.swal2-styled.swal2-default-outline");
     private final By deletedMessage = By.xpath("//div[@class='toast-title']");
@@ -18,18 +18,13 @@ public class StoresPage extends BasePage{
         return isDisplayed(pageTitle) && getText(pageTitle).equals("STORES");
     }
 
-    public int getStoresCount() {
+    public int getStoresCount() {//verify at least one store exists
 
         return findElements(storesRows).size();
     }
 
-    public String gitLastStoreName() {
-
-        return getText(lastStoreName);
-    }
-
-    public StoresPage clickDeleteStore() {
-        clickWithJS(deleteButtons);
+    public StoresPage clickDeleteStore(String storeName) {
+        clickWithJS(By.xpath(String.format(deleteButtons, storeName)));
         return this;
     }
 
@@ -48,12 +43,18 @@ public class StoresPage extends BasePage{
         return isDisplayed(deletedMessage);
     }
 
-    public boolean isStorePresentInList() {
-        String storeName = gitLastStoreName();
-        return !storeName.isEmpty();
+    public String gitStoreName() {
+
+        return getText(storeName);
+    }
+
+    public boolean isStoreRemoveFromList() {
+
+        return !isDisplayed(storeName);
     }
 
     public void cancelDeleteStore() {
-        click(cancelButton);
+        clickWithJS(cancelButton);
+        //waitForElementToDisappear(cancelButton);
     }
 }
