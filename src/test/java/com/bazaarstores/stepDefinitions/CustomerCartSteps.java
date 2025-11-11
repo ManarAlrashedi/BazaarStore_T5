@@ -35,7 +35,8 @@ public class CustomerCartSteps {
     }
     @Then("asser the cart is empty now")
     public void asser_the_cart_is_empty_now() {
-    assert true;
+
+        assert true;
     }
 
 
