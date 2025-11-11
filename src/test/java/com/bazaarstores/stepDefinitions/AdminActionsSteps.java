@@ -51,7 +51,7 @@ public class AdminActionsSteps {
 
     @Then("The ADDSTORE button should be visible")
     public void theADDSTOREButtonShouldBeVisible() {
-        allPages.getStoresPage().AddStoreButton();
+        allPages.getStoresPage().isAddStoreButtonVisible();
         assert true;
     }
 
@@ -151,8 +151,6 @@ public class AdminActionsSteps {
       allPages.getStoresPage().FailMessage();
 
     }
-
-
 
 
     @Then("new store should be visible in the store list")

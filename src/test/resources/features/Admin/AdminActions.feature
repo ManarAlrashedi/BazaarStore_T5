@@ -5,7 +5,7 @@ Feature: Admin Functionality
 
 
   @AddButtonVisible
-  Scenario: admin can see the adduser button
+  Scenario: admin can see the add user button
     When admin user navigates to store management page
     And The ADDSTORE button should be visible
     Then Admin click ADDSTORE button and in create store page
