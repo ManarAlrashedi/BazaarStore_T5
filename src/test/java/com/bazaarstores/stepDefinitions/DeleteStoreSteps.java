@@ -41,17 +41,4 @@ public class DeleteStoreSteps {
         Assert.assertTrue("Store should be removed from the list",
                 allPages.getStoresPage().isStorePresentInList());
     }
-
-    @And("admin user cancel the deletion")
-    public void adminUserCancelTheDeletion() {
-        allPages.getStoresPage().cancelDeleteStore();
-        Assert.assertFalse("Confirmation dialog should be closed",
-                allPages.getStoresPage().isDeleteConfirmationDialogDisplayed());
-    }
-
-    @Then("the store should still be present in the store list")
-    public void theStoreShouldStillBePresentInTheStoreList() {
-        Assert.assertTrue("Store should still be present in the list",
-                allPages.getStoresPage().isStorePresentInList());
-    }
 }
