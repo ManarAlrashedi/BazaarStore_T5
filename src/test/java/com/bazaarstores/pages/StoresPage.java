@@ -2,6 +2,8 @@ package com.bazaarstores.pages;
 
 import org.openqa.selenium.By;
 
+import static org.junit.Assert.assertEquals;
+
 public class StoresPage extends BasePage {
 
     private final By pageTitle = By.tagName("h3");
@@ -58,12 +60,17 @@ public class StoresPage extends BasePage {
        click(addStoreButton);
     }
 
+
     public StoresPage successMessage() {
-        isDisplayed(NewStoreSuccessMessage);
+        assertEquals(
+                "Success",
+                getText(this.NewStoreSuccessMessage));
         return this;
     }
     public StoresPage FailMessage() {
-        isDisplayed(NewStoreFailMessage);
+        assertEquals(
+                "Error",
+                getText(this.NewStoreFailMessage));
         return this;
     }
     public StoresPage NewStore() {
