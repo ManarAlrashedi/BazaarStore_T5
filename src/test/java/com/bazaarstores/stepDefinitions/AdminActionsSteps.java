@@ -123,7 +123,6 @@ public class AdminActionsSteps {
         allPages.getCreateStorePage().clickSubmit();
 
     }
-
     @When("admin user navigates to store management page")
     public void admin_user_navigates_to_store_management_page() {
         allPages.getDashboardPage().clickStoreLink();

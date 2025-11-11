@@ -8,7 +8,10 @@ public class AllPages {
     private ProductsPage productsPage;
     private CustomerCartPage customerCartPage;
     private StoresPage storesPage;
-    private CreateStorePage createStorePage;
+    private CustomerPage customerPage;
+    private UsersPage usersPage;
+    private CreateUserPage createUserPage;
+   private CreateStorePage createStorePage;
 
 
     public LoginPage getLoginPage() {
@@ -50,11 +53,28 @@ public class AllPages {
         }
         return customerCartPage;
     }
-
     public CreateStorePage getCreateStorePage () {
         if (createStorePage == null) {
             createStorePage = new CreateStorePage();
         }
         return createStorePage;
+   }
+public CustomerPage getCustomerPage () {
+    if (customerPage == null) {
+        customerPage = new CustomerPage();
+    }
+    return customerPage;
+}
+    public UsersPage getUsersPage() {
+        if (usersPage == null) {
+            usersPage = new UsersPage();
+        }
+        return usersPage;
+    }
+    public CreateUserPage getCreateUserPage() {
+        if (createUserPage == null) {
+            createUserPage = new CreateUserPage();
+        }
+        return createUserPage;
     }
 }

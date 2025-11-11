@@ -77,6 +77,6 @@ public class LoginSteps {
                 .clickLoginButton();
 
         Assert.assertTrue("Dashboard should be displayed",
-                allPages.getDashboardPage().isProfileVisitChartDisplayed());
+                allPages.getDashboardPage().isDashboardPageDisplayed());
     }
 }

@@ -1,31 +1,51 @@
 package com.bazaarstores.stepDefinitions;
 
+import com.bazaarstores.pages.AllPages;
+import com.github.javafaker.Faker;
+import io.cucumber.java.PendingException;
 import io.cucumber.java.en.*;
+import org.junit.Assert;
 
 public class UsersSteps {
+    AllPages allPages = new AllPages();
+    Faker faker = new Faker();
 
-    @Given("the admin is on the Add User page")
-    public void the_admin_is_on_the_add_user_page() {
-        System.out.println("Admin is on Add User page");
+    @When("admin user navigates to users management page")
+    public void admin_user_navigates_to_users_management_page() {
+        allPages.getDashboardPage().clickUsersLink();
+        Assert.assertTrue("Users Page Should be Displayed"
+                ,allPages.getUsersPage().isUsersPageDisplayed());
+    }
+    @When("admin user click add users button")
+    public void admin_user_click_add_users_button() {
+        allPages.getUsersPage().clickAddUser();
+        Assert.assertTrue("Add Users Page Should be Displayed"
+                ,allPages.getCreateUserPage().isAddUsersPageDisplayed());
+    }
+    @And("admin user enters valid {string}, {string},{string},{string} and {string}")
+    public void adminUserEntersValidAnd(String name , String email, String password, String passwordConf, String role) {
+   allPages.getCreateUserPage().enterName(name)
+           .enterEmail(email)
+           .enterPassword(password)
+           .enterPasswordConf(passwordConf)
+           .enterRole(role);
     }
 
-    @When("the admin enters valid Name, Email, Password, and Role")
-    public void the_admin_enters_valid_name_email_password_and_role() {
-        System.out.println("Admin enters valid user details");
+    @When("admin user clicks Submit button")
+    public void admin_user_clicks_submit_button() {
+       allPages.getCreateUserPage().clickSubmit();
     }
 
-    @When("clicks Save")
-    public void clicks_save() {
-        System.out.println("Admin clicks save");
-    }
 
     @Then("the user should be added successfully")
     public void the_user_should_be_added_successfully() {
-        System.out.println("User added successfully");
+        allPages.getUsersPage().successMessage();
     }
 
-    @Then("appear in the user list")
-    public void appear_in_the_user_list() {
-        System.out.println("User appears in the user list");
+    @Then("verify the user in list")
+    public void verify_the_user_in_list() {
+        Assert.assertTrue("Admin Should be see user"
+                ,allPages.getUsersPage().isNameAdded());
     }
+
 }

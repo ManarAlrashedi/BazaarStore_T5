@@ -14,7 +14,7 @@ public class DashboardPage extends BasePage {
     private final By logoutButton = By.cssSelector("button:contains('Logout'), a:contains('Logout')");
     private final By userName = By.cssSelector(".user-name, [class*='username']");
     private final By storeLink = By.xpath("//a[@class='sidebar-link']//span[.='Store']");
-
+    private final By usersLink = By.xpath("//a[@class='sidebar-link']//span[.='Users']");
 
     // Navigation Methods
     public void clickProfileLink() {
@@ -32,6 +32,7 @@ public class DashboardPage extends BasePage {
     public void clickStoreLink() {
         click(storeLink);
     }
+    public void clickUsersLink() { click(usersLink);}
 
     public LoginPage clickLogout() {
         click(logoutButton);
@@ -71,4 +72,6 @@ public class DashboardPage extends BasePage {
     public boolean isProfileVisitChartDisplayed() {
         return isDisplayed(profileVisitChart);
     }
+
+
 }
