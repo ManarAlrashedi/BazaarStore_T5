@@ -182,21 +182,21 @@ public class AdminActionsForStoresSteps {
 
     @When("Admin navigates to Users Page")
     public void admin_navigates_to_users_page() {
-        allPages.getUserPage().navigateToUsersPage();
+        allPages.getUsersPage().navigateToUsersPage();
         Assert.assertTrue("Users table should be displayed",
-                allPages.getUserPage().isUsersTableDisplayed());
+                allPages.getUsersPage().isUsersTableDisplayed());
     }
 
     @When("Admin enters {string} in search field and clicks search")
     public void admin_enters_in_search_field_and_clicks_search(String email) {
-        allPages.getUserPage().enterSearchEmail(email);
-        allPages.getUserPage().clickSearch();
+        allPages.getUsersPage().enterSearchEmail(email);
+        allPages.getUsersPage().clickSearch();
     }
 
     @Then("Admin should see all registered users with Name and Email")
     public void admin_should_see_all_registered_users_with_name_and_email() {
 
-        UsersPage usersPage = allPages.getUserPage();
+        UsersPage usersPage = allPages.getUsersPage();
 
         // Scroll للأسفل للصفحة الحالية
         ((org.openqa.selenium.JavascriptExecutor) Driver.getDriver())
@@ -218,12 +218,12 @@ public class AdminActionsForStoresSteps {
 
     @Then("Only the user with matching email is displayed")
     public void only_the_user_with_matching_email_is_displayed() {
-        Assert.assertEquals(1, allPages.getUserPage().getAllUsers().size());
+        Assert.assertEquals(1, allPages.getUsersPage().getAllUsers().size());
     }
 
     @Then("A message {string} is displayed")
     public void a_message_is_displayed(String message) {
-        Assert.assertTrue(allPages.getUserPage().isNoUsersMessageDisplayed());
+        Assert.assertTrue(allPages.getUsersPage().isNoUsersMessageDisplayed());
     }
 }
 
