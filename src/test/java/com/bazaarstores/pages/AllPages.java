@@ -1,5 +1,7 @@
 package com.bazaarstores.pages;
 
+import com.bazaarstores.utilities.Driver;
+
 public class AllPages {
 
     private LoginPage loginPage;
@@ -9,6 +11,7 @@ public class AllPages {
     private CustomerCartPage customerCartPage;
     private StoresPage storesPage;
     private CreateStorePage createStorePage;
+    private UsersPage userPage;
 
 
     public LoginPage getLoginPage() {
@@ -56,5 +59,19 @@ public class AllPages {
             createStorePage = new CreateStorePage();
         }
         return createStorePage;
+    }
+
+    public UsersPage getUsersPage () {
+        if (userPage == null) {
+            userPage = new UsersPage();
+        }
+        return userPage;
+    }
+
+    public UsersPage getUserPage() {
+        if (userPage == null) {
+            userPage = new UsersPage();
+        }
+        return userPage;
     }
 }

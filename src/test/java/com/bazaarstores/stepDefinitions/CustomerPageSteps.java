@@ -22,7 +22,7 @@ import static org.openqa.selenium.By.cssSelector;
 public class CustomerPageSteps {
 
     LoginPage loginPage = new LoginPage();
-    CustomerPage customerPage = new CustomerPage();
+    public CustomerPage customerPage = new CustomerPage();
 
     private void sleep(int millis) {
         try {
@@ -50,13 +50,13 @@ public class CustomerPageSteps {
 
     @When("the user observes the displayed products")
     public void the_user_observes_the_displayed_products() {
-        // احضار قائمة المنتجات من الصفحة
+
         List<WebElement> products = Driver.getDriver().findElements(By.cssSelector(".product-card"));
 
-        // طباعة عدد المنتجات (للتأكد)
+
         System.out.println("Number of products displayed: " + products.size());
 
-        // التحقق أن فيه منتجات ظاهرة فعلاً
+
         Assert.assertTrue("No products are displayed on the page!", products.size() > 0);
     }
 

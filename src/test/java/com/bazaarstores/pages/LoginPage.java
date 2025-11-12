@@ -51,4 +51,6 @@ public class LoginPage extends BasePage {
         Driver.getDriver().get(url);
     }
 
+    public void loginAsAdmin() {
+    }
 }

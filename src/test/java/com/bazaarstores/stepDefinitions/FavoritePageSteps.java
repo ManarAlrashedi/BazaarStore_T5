@@ -78,13 +78,13 @@ public class FavoritePageSteps {
     public void the_user_clicks_on_the_my_favorites_link() {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
 
-        // انتظر اختفاء أي Overlay مثل SweetAlert
+
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".swal2-container")));
 
-        // اضغط على رابط My Favorites
+
         Driver.getDriver().findElement(By.linkText("My Favorites")).click();
 
-        // انتظر ظهور قائمة المنتجات أو رسالة لا توجد منتجات
+
         wait.until(ExpectedConditions.or(
                 ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".product-card")),
                 ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".no-favorites-message"))
@@ -96,7 +96,7 @@ public class FavoritePageSteps {
         List<WebElement> favorites = Driver.getDriver().findElements(By.cssSelector(".product-card .product-name"));
         Assert.assertTrue("No products found in My Favorites!", favorites.size() > 0);
 
-        // طباعة أسماء المنتجات لتأكيد
+
         favorites.forEach(p -> System.out.println("Favorite product: " + p.getText()));
     }
 
@@ -105,15 +105,15 @@ public class FavoritePageSteps {
         List<WebElement> hearts = Driver.getDriver().findElements(By.cssSelector(".favorite-icon.active"));
         Assert.assertTrue("No active favorite products to remove!", hearts.size() > 0);
 
-        WebElement heart = hearts.get(0); // اختر أول منتج مضاف للمفضلة
+        WebElement heart = hearts.get(0);
         WebElement productCard = heart.findElement(By.xpath("./ancestor::div[@class='product-card']"));
         removedProductName = productCard.findElement(By.cssSelector(".product-name")).getText();
 
-        // اضغط على القلب لإزالة المنتج
+
         heart.click();
 
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
-        // انتظر حتى يختفي العنصر من DOM
+
         wait.until(ExpectedConditions.stalenessOf(productCard));
     }
 

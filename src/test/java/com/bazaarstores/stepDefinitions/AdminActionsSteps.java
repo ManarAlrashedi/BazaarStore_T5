@@ -1,6 +1,8 @@
 package com.bazaarstores.stepDefinitions;
 
 import com.bazaarstores.pages.AllPages;
+import com.bazaarstores.pages.UsersPage;
+import com.bazaarstores.utilities.Driver;
 import com.github.javafaker.Faker;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.*;
@@ -172,4 +174,58 @@ public class AdminActionsSteps {
     }
 
 
+
+    @Given("Admin is logged in")
+    public void admin_is_logged_in() {
+        allPages.getLoginPage().loginAsAdmin();
+    }
+
+    @When("Admin navigates to Users Page")
+    public void admin_navigates_to_users_page() {
+        allPages.getUserPage().navigateToUsersPage();
+        Assert.assertTrue("Users table should be displayed",
+                allPages.getUserPage().isUsersTableDisplayed());
+    }
+
+    @When("Admin enters {string} in search field and clicks search")
+    public void admin_enters_in_search_field_and_clicks_search(String email) {
+        allPages.getUserPage().enterSearchEmail(email);
+        allPages.getUserPage().clickSearch();
+    }
+
+    @Then("Admin should see all registered users with Name and Email")
+    public void admin_should_see_all_registered_users_with_name_and_email() {
+
+        UsersPage usersPage = allPages.getUserPage();
+
+        // Scroll للأسفل للصفحة الحالية
+        ((org.openqa.selenium.JavascriptExecutor) Driver.getDriver())
+                .executeScript("window.scrollTo(0, document.body.scrollHeight);");
+
+        // الانتظار البسيط للصفحة لتحميل الجدول
+        try { Thread.sleep(1000); } catch (InterruptedException e) {}
+
+        // الحصول على جميع الصفوف عبر جميع صفحات الـ Pagination
+        int totalUsers = usersPage.getAllUsers().size();
+
+        // تحقق من وجود مستخدمين
+        Assert.assertTrue("Expected at least one user to be displayed, but found none", totalUsers > 0);
+
+        System.out.println("Total users found across all pages: " + totalUsers);
+    }
+
+
+
+    @Then("Only the user with matching email is displayed")
+    public void only_the_user_with_matching_email_is_displayed() {
+        Assert.assertEquals(1, allPages.getUserPage().getAllUsers().size());
+    }
+
+    @Then("A message {string} is displayed")
+    public void a_message_is_displayed(String message) {
+        Assert.assertTrue(allPages.getUserPage().isNoUsersMessageDisplayed());
+    }
 }
+
+
+

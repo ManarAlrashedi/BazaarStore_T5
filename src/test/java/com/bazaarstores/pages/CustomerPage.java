@@ -1,38 +1,7 @@
 package com.bazaarstores.pages;
 
+import com.bazaarstores.pages.BasePage;
 import com.bazaarstores.utilities.Driver;
-<<<<<<< Updated upstream
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
-
-public class CustomerPage extends BasePage {
-
-    // جميع المنتجات
-    public List<WebElement> productList() {
-        return Driver.getDriver().findElements(By.cssSelector(".product-card"));
-    }
-
-    // تحقق من عرض المنتجات
-    public boolean areProductsDisplayed() {
-        return !productList().isEmpty();
-    }
-
-    // تحقق من التفاصيل الكاملة لكل منتج
-    public boolean areProductDetailsDisplayed() {
-        for (WebElement product : productList()) {
-            if (product.findElements(By.cssSelector(".product-name")).isEmpty()) return false;
-            if (product.findElements(By.cssSelector(".product-price")).isEmpty()) return false;
-            if (product.findElements(By.cssSelector(".product-description")).isEmpty()) return false;
-            if (product.findElements(By.cssSelector(".product-image")).isEmpty()) return false;
-        }
-        return true;
-    }
-}
-
-
-=======
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -81,7 +50,7 @@ public class CustomerPage extends BasePage {
             boolean hasImage = !product.findElements(productImage).isEmpty();
 
             if (!(hasName && hasPrice && hasDescription && hasImage)) {
-                System.out.println("❌ Missing detail in product: " + product.getText());
+                System.out.println("Missing detail in product: " + product.getText());
                 return false;
             }
         }
@@ -140,11 +109,11 @@ public class CustomerPage extends BasePage {
             scrollToElement(product);
 
             try {
-                // اضغط على المنتج
+
                 product.click();
                 Thread.sleep(800);
 
-                // تحقق من العناصر داخل نفس البطاقة
+
                 WebElement name = product.findElement(By.cssSelector(".product-name"));
                 WebElement price = product.findElement(By.cssSelector(".product-price"));
                 WebElement desc = product.findElement(By.cssSelector(".product-description"));
@@ -155,10 +124,10 @@ public class CustomerPage extends BasePage {
                 Assert.assertTrue("Product description is missing!", desc.isDisplayed());
                 Assert.assertTrue("Product image is missing!", image.isDisplayed());
 
-                System.out.println("✅ Product " + (i + 1) + " details verified successfully.");
+                System.out.println(" Product " + (i + 1) + " details verified successfully.");
 
             } catch (Exception e) {
-                System.out.println("❌ Failed to verify product " + (i + 1) + ": " + e.getMessage());
+                System.out.println(" Failed to verify product " + (i + 1) + ": " + e.getMessage());
             }
         }
     }
@@ -218,4 +187,4 @@ public class CustomerPage extends BasePage {
     }
 
 }
->>>>>>> Stashed changes
+
