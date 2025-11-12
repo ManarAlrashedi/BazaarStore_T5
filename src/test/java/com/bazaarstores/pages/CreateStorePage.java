@@ -1,5 +1,6 @@
 package com.bazaarstores.pages;
 
+import com.bazaarstores.stepDefinitions.StoreSteps;
 import com.bazaarstores.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
@@ -19,23 +20,29 @@ public class CreateStorePage extends BasePage {
     private final By DescriptionRequiredFieldMessage = By.xpath("//li[.='The description field is required.']");
     private final By LocationRequiredFieldMessage = By.xpath("//li[.='The location field is required.']");
 
+    public static String storeName;
+    public static String Location;
+    public static String Descrption;
 
     public CreateStorePage enterName(String name) {
+        storeName = name;
         sendKeys(NameField,name);
         return this;
     }
 
     public CreateStorePage enterLocation(String location) {
+        Location=location;
         sendKeys(LocationField,location);
         return this;
     }
+
     public CreateStorePage selectAdmin(String adminName) {
         selectByVisibleText(AdminSelector, adminName);
         return this;
 
     }
     public CreateStorePage enterDescription(String descrption) {
-
+        Descrption=descrption;
         Driver.getDriver().switchTo().frame("default_ifr");
         //scrollToElement(DescriptionField);
         sendKeys(DescriptionField,descrption);
@@ -53,10 +60,6 @@ public class CreateStorePage extends BasePage {
         }
         return this;
     }
-
-
-
-
 
 
 

@@ -70,4 +70,8 @@ public class ConfigReader {
         return headless != null ? Boolean.parseBoolean(headless) :
                 Boolean.parseBoolean(properties.getProperty("headless"));
     }
+    public static String getCustomerPageUrl() {
+        return properties.getProperty("customer.page.url");
+    }
+
 }

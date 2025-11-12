@@ -1,6 +1,7 @@
 package com.bazaarstores.stepDefinitions;
 
 
+import com.bazaarstores.pages.CreateStorePage;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -8,9 +9,6 @@ import io.cucumber.java.en.When;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static com.bazaarstores.stepDefinitions.LoginSteps.loginEmail;
 import static com.bazaarstores.stepDefinitions.ProductsSteps.catalog;
@@ -121,5 +119,22 @@ public class ApiSteps {
         assertNull(actualProductName);
     }
 
+    @And("assert the user deletion via API")
+    public void assertTheUserDeletionViaAPI() {
+        Response response = given(spec()).get("/users");
+        JsonPath jsonPath = response.jsonPath();
+        String actualUserEmail = jsonPath.getString("find{it.email=='" + email + "'}.email");
+        assertNull(actualUserEmail);
+    }
+
+    @And("assert the store Adding via API")
+    public void assertTheStoreAddingViaAPI() {
+
+        String storeName = CreateStorePage.storeName;
+        Response response = given(spec()).get("/stores");
+        JsonPath jsonPath = response.jsonPath();
+        String actualStoreName = jsonPath.getString("find{it.email=='" + email + "'}.storeName");
+        assertEquals(storeName, actualStoreName);
+    }
 }
 

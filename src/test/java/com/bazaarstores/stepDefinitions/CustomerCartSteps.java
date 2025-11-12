@@ -15,6 +15,9 @@ public class CustomerCartSteps {
     @When("customer in the cart")
     public void customerInTheCart() {
 
+        allPages.getCustomerCartPage().hoverOverCart();
+        allPages.getCustomerCartPage().ClickViewCart();
+        allPages.getCustomerCartPage().ProductIsVisable();
 
     }
 
@@ -39,6 +42,10 @@ public class CustomerCartSteps {
 
     @Then("asser the cart is empty now")
     public void asser_the_cart_is_empty_now() {
+
         assert true;
     }
+
+
+
 }

@@ -1,18 +1,20 @@
 package com.bazaarstores.stepDefinitions;
 
 import com.bazaarstores.pages.AllPages;
+import com.bazaarstores.pages.UsersPage;
+import com.bazaarstores.utilities.Driver;
 import com.github.javafaker.Faker;
-import io.cucumber.java.PendingException;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class AdminActionsSteps {
+public class AdminActionsForStoresSteps {
 
     AllPages allPages = new AllPages();
     Faker faker =new Faker();
+    //public String newStore;
 
     @Then("The ADDSTORE button should be visible")
     public void theADDSTOREButtonShouldBeVisible() {
@@ -37,7 +39,7 @@ public class AdminActionsSteps {
     public void adminFillsTheFormExceptTheNameField() {
         allPages.getCreateStorePage()
                 .enterLocation(faker.address().city())
-                .selectAdmin("Evie Larson")
+                .selectAdmin("Store Manager")
                 .enterDescription(faker.lorem().paragraph());
 
 
@@ -53,7 +55,7 @@ public class AdminActionsSteps {
     public void adminFillsTheFormExceptTheLocationField() {
         allPages.getCreateStorePage()
                 .enterName("TeamFive")
-                .selectAdmin("Evie Larson")
+                .selectAdmin("Store Manager")
                 .enterDescription(faker.lorem().paragraph());
 
     }
@@ -69,7 +71,7 @@ public class AdminActionsSteps {
         allPages.getCreateStorePage()
                 .enterName("TeamFive")
                 .enterLocation(faker.address().city())
-                .selectAdmin("Evie Larson");
+                .selectAdmin("Store Manager");
     }
 
     @Then("A validation message for the Description field should be displayed")
@@ -114,6 +116,7 @@ public class AdminActionsSteps {
 
     @Then("new store should be visible in the store list")
     public void newStoreShouldBeVisibleInTheStoreList() {
+
       allPages.getStoresPage().NewStore();
 
     }
@@ -151,10 +154,10 @@ public class AdminActionsSteps {
                 allPages.getStoresPage().isStoreDeletedMessageDisplayed());
     }
 
-    @Then("the store should be removed from the store list")
-    public void the_store_should_be_removed_from_the_store_list() {
+    @Then("the store {string} should be removed from the store list")
+    public void the_store_should_be_removed_from_the_store_list(String name) {
         Assert.assertTrue("Store should be removed from the list",
-                allPages.getStoresPage().isStoreRemoveFromList());
+                allPages.getStoresPage().isStoreRemoveFromList(name));
     }
 
     @And("admin user cancel the deletion")
@@ -164,11 +167,65 @@ public class AdminActionsSteps {
                 allPages.getStoresPage().isDeleteConfirmationDialogDisplayed());
     }
 
-    @Then("the store should still be present in the store list")
-    public void theStoreShouldStillBePresentInTheStoreList() {
+    @Then("the store {string} should still be present in the store list")
+    public void theStoreShouldStillBePresentInTheStoreList(String name) {
         Assert.assertTrue("Store should still be present in the list",
-                allPages.getStoresPage().isStoreStillPresentInList());
+                allPages.getStoresPage().isStoreStillPresentInList(name));
     }
 
 
+
+    @Given("Admin is logged in")
+    public void admin_is_logged_in() {
+        allPages.getLoginPage().loginAsAdmin();
+    }
+
+    @When("Admin navigates to Users Page")
+    public void admin_navigates_to_users_page() {
+        allPages.getUserPage().navigateToUsersPage();
+        Assert.assertTrue("Users table should be displayed",
+                allPages.getUserPage().isUsersTableDisplayed());
+    }
+
+    @When("Admin enters {string} in search field and clicks search")
+    public void admin_enters_in_search_field_and_clicks_search(String email) {
+        allPages.getUserPage().enterSearchEmail(email);
+        allPages.getUserPage().clickSearch();
+    }
+
+    @Then("Admin should see all registered users with Name and Email")
+    public void admin_should_see_all_registered_users_with_name_and_email() {
+
+        UsersPage usersPage = allPages.getUserPage();
+
+        // Scroll للأسفل للصفحة الحالية
+        ((org.openqa.selenium.JavascriptExecutor) Driver.getDriver())
+                .executeScript("window.scrollTo(0, document.body.scrollHeight);");
+
+        // الانتظار البسيط للصفحة لتحميل الجدول
+        try { Thread.sleep(1000); } catch (InterruptedException e) {}
+
+        // الحصول على جميع الصفوف عبر جميع صفحات الـ Pagination
+        int totalUsers = usersPage.getAllUsers().size();
+
+        // تحقق من وجود مستخدمين
+        Assert.assertTrue("Expected at least one user to be displayed, but found none", totalUsers > 0);
+
+        System.out.println("Total users found across all pages: " + totalUsers);
+    }
+
+
+
+    @Then("Only the user with matching email is displayed")
+    public void only_the_user_with_matching_email_is_displayed() {
+        Assert.assertEquals(1, allPages.getUserPage().getAllUsers().size());
+    }
+
+    @Then("A message {string} is displayed")
+    public void a_message_is_displayed(String message) {
+        Assert.assertTrue(allPages.getUserPage().isNoUsersMessageDisplayed());
+    }
 }
+
+
+

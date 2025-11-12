@@ -13,6 +13,7 @@ import java.util.List;
 
 public abstract class BasePage {
 
+    public Object productName;
     protected WebDriverWait wait;
     protected Actions actions;
 
@@ -28,7 +29,7 @@ public abstract class BasePage {
         return Driver.getDriver().findElement(locator);
     }
 
-    protected List<WebElement> findElements(By locator) {
+    public List<WebElement> findElements(By locator) {
         return Driver.getDriver().findElements(locator);
     }
 
@@ -201,6 +202,7 @@ public abstract class BasePage {
     }
 
     public void switchToFrame(By frameLocator) {
+
         Driver.getDriver().switchTo().frame(findElement(frameLocator));
     }
 
@@ -230,5 +232,11 @@ public abstract class BasePage {
     public byte[] takeScreenshot() {
 
         return ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+    }
+    public void login(String customerEmail, String defaultPassword) {
+    }
+
+
+    public void clickUsersLink() {
     }
 }

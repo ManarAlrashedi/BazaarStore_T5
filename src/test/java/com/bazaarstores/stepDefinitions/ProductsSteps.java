@@ -1,6 +1,7 @@
 package com.bazaarstores.stepDefinitions;
 
 import com.bazaarstores.pages.AllPages;
+import com.github.javafaker.Faker;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
 
@@ -12,8 +13,9 @@ import static com.bazaarstores.utilities.Driver.setImplicitWait;
 public class ProductsSteps {
 
     AllPages allPages = new AllPages();
-    public static String price;
+    public static String price= Faker.instance().number().digits(2).toString();
     public static String catalog;
+    public static String name;
 
     @When("store manager navigates to the products page")
     public void store_manager_navigates_to_the_products_page() {
@@ -87,7 +89,7 @@ public class ProductsSteps {
 
     @When("user  Edit the price")
     public void user_edit_the_price() {
-        allPages.getProductsPage().price("400.00");
+        allPages.getProductsPage().price(price);
     }
 
     @When("user  Edit the catalog")
@@ -101,15 +103,18 @@ public class ProductsSteps {
     }
 
     @Then("user clicks the submit button")
-    public void user_clicks_the_submit_button() {allPages.getProductsPage().submit();}
+    public void user_clicks_the_submit_button() {
+        allPages.getProductsPage().submit();}
 
     @Then("user should see a success message for the update")
     public void user_should_see_a_success_message_for_the_update() {
+
         allPages.getProductsPage().successMessage();
     }
 
     @Then("user should see a error message for required field")
-    public void user_should_see_a_error_message_for_required_field() {allPages.getProductsPage().missingRequiredFieldMessage();}
+    public void user_should_see_a_error_message_for_required_field() {
+        allPages.getProductsPage().missingRequiredFieldMessage();}
 
 
 }
