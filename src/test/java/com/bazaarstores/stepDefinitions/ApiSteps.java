@@ -1,6 +1,8 @@
 package com.bazaarstores.stepDefinitions;
 
 
+import com.bazaarstores.pages.CreateStorePage;
+import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -9,12 +11,15 @@ import io.restassured.response.Response;
 
 
 import static com.bazaarstores.stepDefinitions.LoginSteps.loginEmail;
+import static com.bazaarstores.stepDefinitions.ProductsSteps.catalog;
+import static com.bazaarstores.stepDefinitions.ProductsSteps.price;
 import static com.bazaarstores.stepDefinitions.RegistrationSteps.email;
 import static com.bazaarstores.stepDefinitions.RegistrationSteps.fullName;
 import static com.bazaarstores.utilities.ApiUtilities.spec;
 import static io.restassured.RestAssured.given;
 import static junit.framework.TestCase.assertNotNull;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class ApiSteps {
 
@@ -29,7 +34,14 @@ public class ApiSteps {
         assertEquals(fullName, actualName);
     }
 
-
+    @And("assert the negative registration via API using email {string}")
+    public void assertTheNegativeRegistrationViaAPIUsingEmail(String email) {
+        Response response = given(spec()).get("/users");
+        response.prettyPrint();
+        JsonPath jsonPath = response.jsonPath();
+        assertNull(jsonPath.getString("find{it.email=='" + email + "'}.name"));
+        assertNull(jsonPath.getString("find{it.email=='" + email + "'}.email"));
+    }
 
     @And("assert the successful login via API")
     public void assertTheSuccessfulLoginViaAPI() {
@@ -74,6 +86,21 @@ public class ApiSteps {
         assertNotNull(actualName);
     }
 
+    @Then("assert the products catalog via API")
+    public void assert_the_products_catalog_via_api() {
+        Response response = given(spec()).get("/products");
+        JsonPath jsonPath = response.jsonPath();
+        String actualCatalog = jsonPath.getString("find{it.email=='" + email + "'}.catalog");
+        assertEquals(catalog, actualCatalog);
+    }
+
+    @Then("assert the price catalog via API")
+    public void assert_the_price_catalog_via_api() {
+        Response response = given(spec()).get("/products");
+        JsonPath jsonPath = response.jsonPath();
+        String actualPrice = jsonPath.getString("find{it.email=='" + email + "'}.catalog");
+        assertEquals(price, actualPrice);
+    }
 
     @Then("assert the store deletion via API")
     public void assert_the_store_deletion_via_api() {
@@ -92,44 +119,22 @@ public class ApiSteps {
         assertNull(actualProductName);
     }
 
-    @Then("assert the products catalog via API")
-    public void assert_the_products_catalog_via_api() {
-        Response response = given(spec()).get("/products");
+    @And("assert the user deletion via API")
+    public void assertTheUserDeletionViaAPI() {
+        Response response = given(spec()).get("/users");
         JsonPath jsonPath = response.jsonPath();
-        String actualCatalog = jsonPath.getString("find{it.name=='" + ProductsSteps.name + "'}.catalog");
-        assertEquals(ProductsSteps.catalog, actualCatalog);
+        String actualUserEmail = jsonPath.getString("find{it.email=='" + email + "'}.email");
+        assertNull(actualUserEmail);
     }
 
-    @Then("assert the price updated via API")
-    public void assert_the_price_updated_via_api() {
-        Response response = given(spec()).get("/products");
-        JsonPath jsonPath = response.jsonPath();
-        String actualPrice = jsonPath.getString("find{it.name=='" + ProductsSteps.name + "'}.price");
-        assertEquals(Double.parseDouble(ProductsSteps.price), Double.parseDouble(actualPrice), 0.001);
-    }
+    @And("assert the store Adding via API")
+    public void assertTheStoreAddingViaAPI() {
 
-
-    @Then("assert the updated data via API")
-    public void assert_the_updated_data_via_api() {
+        String storeName = CreateStorePage.storeName;
         Response response = given(spec()).get("/stores");
         JsonPath jsonPath = response.jsonPath();
-        assertEquals(StoreSteps.name, jsonPath.getString("find{it.name=='" + StoreSteps.name + "'}.name"));
-        assertEquals(StoreSteps.loaction, jsonPath.getString("find{it.name=='" + StoreSteps.name + "'}.location"));
-        assertEquals(
-                StoreSteps.description,
-                jsonPath.getString("find { it.name == '" + StoreSteps.name + "' }.description")
-                        .replaceAll("<[^>]*>", "")
-                        .replace("&nbsp;", "")
-                        .trim()
-        );
-    }
-
-    @And("assert the negative editing via API")
-    public void assert_the_negative_editing_via_API() {
-        Response response = given(spec()).get("/stores");
-        JsonPath jsonPath = response.jsonPath();
-        assertNotNull(jsonPath.getString("find{it.name=='" + StoreSteps.originalName + "'}.name"));
+        String actualStoreName = jsonPath.getString("find{it.email=='" + email + "'}.storeName");
+        assertEquals(storeName, actualStoreName);
     }
 }
-
 

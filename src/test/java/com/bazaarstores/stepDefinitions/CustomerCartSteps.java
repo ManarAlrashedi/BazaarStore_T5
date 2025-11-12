@@ -5,6 +5,7 @@ import io.cucumber.java.PendingException;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 
 public class CustomerCartSteps {
 
@@ -14,6 +15,9 @@ public class CustomerCartSteps {
     @When("customer in the cart")
     public void customerInTheCart() {
 
+        allPages.getCustomerCartPage().hoverOverCart();
+        allPages.getCustomerCartPage().ClickViewCart();
+        allPages.getCustomerCartPage().ProductIsVisable();
 
     }
     @When("customer click confirm cart")
@@ -23,6 +27,7 @@ public class CustomerCartSteps {
 
     @Then("customer should see the {string} Message")
     public void customer_should_see_the_message(String message) {
+
        allPages.getCustomerCartPage().SuccessMessage();
 
 
@@ -36,7 +41,7 @@ public class CustomerCartSteps {
     @Then("asser the cart is empty now")
     public void asser_the_cart_is_empty_now() {
 
-        assert true;
+       assert true;
     }
 
 

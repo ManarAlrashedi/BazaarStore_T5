@@ -1,5 +1,6 @@
 package com.bazaarstores.pages;
 
+import com.bazaarstores.utilities.Driver;
 import org.openqa.selenium.By;
 
 public class LoginPage extends BasePage {
@@ -44,5 +45,12 @@ public class LoginPage extends BasePage {
         By field = By.cssSelector("input[name='"+fieldName+"'], input[type='"+fieldName+"']");
         String validationMessage = getValidationMessage(field);
         return validationMessage != null && !validationMessage.isEmpty();
+    }
+    @Override
+    public void navigateToUrl(String url) {
+        Driver.getDriver().get(url);
+    }
+
+    public void loginAsAdmin() {
     }
 }

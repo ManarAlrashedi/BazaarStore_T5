@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 public class StoresPage extends BasePage{
 
     private final By pageTitle = By.tagName("h3");
-    private final By storeName = By.xpath("//tr[td[contains(.,'%s')]]");
+    private final String storeName = "//tr[td[contains(.,'%s')]]";
     private final By storesRows = By.xpath("//div[@class='table-responsive']//tbody//tr");
     private final String deleteButtons = "//tr[td[contains(.,'%s')]]//i[@class='bi bi-trash3']";
     private final By confirmationDialog = By.xpath("//div[@role='dialog']");
@@ -60,14 +60,9 @@ public class StoresPage extends BasePage{
         return isDisplayed(deletedMessage);
     }
 
-    public String gitStoreName() {
+    public boolean isStoreRemoveFromList(String name) {
 
-        return getText(storeName);
-    }
-
-    public boolean isStoreRemoveFromList() {
-
-        return !isDisplayed(storeName);
+        return !isDisplayed(By.xpath(String.format(storeName, name)));
     }
 
     public void cancelDeleteStore() {
@@ -75,9 +70,9 @@ public class StoresPage extends BasePage{
         //waitForElementToDisappear(cancelButton);
     }
 
-    public  boolean isStoreStillPresentInList() {
+    public  boolean isStoreStillPresentInList(String name) {
 
-        return isDisplayed(storeName);
+        return isDisplayed(By.xpath(String.format(storeName, name)));
     }
 
     public  boolean isAddStoreButtonVisible() {
