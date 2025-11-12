@@ -15,18 +15,18 @@ public class StoreSteps {
     public static String admin;
     public static String originalName;
 
-    @When("admin user navigates to store management page")
-    public void admin_user_navigates_to_store_management_page() {
-        allPages.getDashboardPage().clickStoreLink();
-        Assert.assertTrue("Stores Page Should be Displayed"
-                ,allPages.getStoresPage().isStoresPageDisplayed());
-    }
+//    @When("admin user navigates to store management page")
+//    public void admin_user_navigates_to_store_management_page() {
+//        allPages.getDashboardPage().clickStoreLink();
+//        Assert.assertTrue("Stores Page Should be Displayed"
+//                ,allPages.getStoresPage().isStoresPageDisplayed());
+//    }
 
-    @When("verify at least one store exists in the system")
-    public void at_least_one_store_exists_in_the_system() {
-        Assert.assertTrue("At least one store should exist",
-                allPages.getStoresPage().getStoresCount() > 0);
-    }
+//    @When("verify at least one store exists in the system")
+//    public void at_least_one_store_exists_in_the_system() {
+//        Assert.assertTrue("At least one store should exist",
+//                allPages.getStoresPage().getStoresCount() > 0);
+//    }
 
 //    @When("admin user clicks delete button for a store")
 //    public void admin_user_clicks_delete_button_for_a_store() {
@@ -35,12 +35,12 @@ public class StoreSteps {
 //                allPages.getStoresPage().isDeleteConfirmationDialogDisplayed());
 //    }
 
-    @When("admin user confirms the deletion")
-    public void admin_user_confirms_the_deletion() {
-        allPages.getStoresPage().confirmDeleteStore();
-        Assert.assertTrue("Store should be deleted successfully",
-                allPages.getStoresPage().isStoreDeletedMessageDisplayed());
-    }
+//    @When("admin user confirms the deletion")
+//    public void admin_user_confirms_the_deletion() {
+//        allPages.getStoresPage().confirmDeleteStore();
+//        Assert.assertTrue("Store should be deleted successfully",
+//                allPages.getStoresPage().isStoreDeletedMessageDisplayed());
+//    }
 
 //    @Then("the store should be removed from the store list")
 //    public void the_store_should_be_removed_from_the_store_list() {

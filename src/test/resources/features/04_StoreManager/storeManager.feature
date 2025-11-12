@@ -1,4 +1,4 @@
-
+@Smoke
 Feature: Store Manager Functionality
   Background:
     Given user is logged in as a "store manager"

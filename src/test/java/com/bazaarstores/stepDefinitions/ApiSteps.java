@@ -136,5 +136,26 @@ public class ApiSteps {
         String actualStoreName = jsonPath.getString("find{it.email=='" + email + "'}.storeName");
         assertEquals(storeName, actualStoreName);
     }
+    @Then("assert the updated data via API")
+    public void assert_the_updated_data_via_api() {
+        Response response = given(spec()).get("/stores");
+        JsonPath jsonPath = response.jsonPath();
+        assertEquals(StoreSteps.name, jsonPath.getString("find{it.name=='" + StoreSteps.name + "'}.name"));
+        assertEquals(StoreSteps.loaction, jsonPath.getString("find{it.name=='" + StoreSteps.name + "'}.location"));
+        assertEquals(
+                StoreSteps.description,
+                jsonPath.getString("find { it.name == '" + StoreSteps.name + "' }.description")
+                        .replaceAll("<[^>]*>", "")
+                        .replace("&nbsp;", "")
+                        .trim()
+        );
+    }
+
+    @And("assert the negative editing via API")
+    public void assert_the_negative_editing_via_API() {
+        Response response = given(spec()).get("/stores");
+        JsonPath jsonPath = response.jsonPath();
+        assertNotNull(jsonPath.getString("find{it.name=='" + StoreSteps.originalName + "'}.name"));
+    }
 }
 

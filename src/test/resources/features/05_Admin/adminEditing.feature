@@ -1,4 +1,4 @@
-@UpdateStoreDetails
+@Smoke @UpdateStoreDetails
 Feature: Update store details Feature
 
   Background:

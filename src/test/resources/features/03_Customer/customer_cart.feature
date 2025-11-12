@@ -1,4 +1,4 @@
-@customer @CustomerCart
+@Smoke @customer @CustomerCart
 
   Feature: Customer cart Functionality
 

@@ -6,16 +6,19 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/resources/features",
-        glue = "com/bazaarstores/stepDefinitions",
-        tags = "@Smoke",
-        plugin = {
-                "pretty", // Generates readable console output with colored text
-                "html:target/cucumber-reports/cucumber.html", // Creates HTML report at specified path
-                "json:target/cucumber-reports/cucumber.json", // Generates JSON report for integration with other tools
-                "junit:target/cucumber-reports/cucumber.xml", // Creates JUnit XML report for CI/CD systems
+        features = {
+                "src/test/resources/features/registration.feature",
+                "src/test/resources/features/login.feature",
+                "src/test/resources/features/customer_cart.feature",
+                "src/test/resources/features/CustomerPage.feature",
+                "src/test/resources/features/storeManager.feature",
+                "src/test/resources/features/admin_actions_stores.feature",
+                "src/test/resources/features/admin_actions_users.feature",
+                "src/test/resources/features/adminEditing.feature",
+                "src/test/resources/features/stores.feature"
         },
-        monochrome = true
+        tags = "@Smoke",
+        plugin = {"pretty", "html:target/cucumber-reports"}
 )
 public class SmokeTestRunner {
 }

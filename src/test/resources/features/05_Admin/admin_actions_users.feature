@@ -1,3 +1,5 @@
+
+@Smoke
 Feature: Delete Users as an Admin
 
   Background:

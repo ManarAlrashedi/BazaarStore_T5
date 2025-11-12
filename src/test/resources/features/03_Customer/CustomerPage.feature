@@ -1,3 +1,4 @@
+@Smoke
 Feature: Customer Page - Product Display and Performance
 
   Background:
