@@ -85,3 +85,23 @@ Feature: Admin Functionality
     And admin user cancel the deletion
     Then the store "TestDelete" should still be present in the store list
     And assert the store deletion via API
+
+   @US14_TC001 @ViewAllUsers
+  Scenario: Admin can view all users
+    When Admin navigates to Users Page
+    Then Admin should see all registered users with Name and Email
+
+  @US14_TC002 @SearchValidEmail
+  Scenario:Search functionality with valid email
+    When Admin navigates to Users Page
+    And Admin enters "maryam.schinner@yahoo.com" in search field and clicks search
+    Then Only the user with matching email is displayed
+
+    @US14_TC003 @SearchInvalidEmail
+  Scenario: Search functionality with non-existing email
+    When Admin navigates to Users Page
+    And Admin enters "Nouf4@test.com" in search field and clicks search
+    Then A message "No users found." is displayed
+
+
+
