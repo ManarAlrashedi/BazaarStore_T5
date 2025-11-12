@@ -2,7 +2,6 @@
 Feature: Registration Feature
 
   Background:
-    Given user is logged in as a "admin"
     Given user goes to homepage
     When user clicks registration link
 
@@ -54,7 +53,6 @@ Feature: Registration Feature
     And user clicks the sing up button
     Then user should see password is short error message
     And assert the negative registration via API using email "faker"
-
 
   @NegativeRegistration
   Scenario: Registration Negative with Confirm Password field does not match

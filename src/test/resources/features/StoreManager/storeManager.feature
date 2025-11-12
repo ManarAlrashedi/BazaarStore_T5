@@ -13,7 +13,7 @@ Feature: Update Products Feature
     Then user should see a success message for the update
     Then assert the price updated via API
 
-  @HappyPath5
+  @HappyPath
   Scenario: Changes reflect in the catalog after saving
     When user clicks the edit button
     And user  Edit the catalog

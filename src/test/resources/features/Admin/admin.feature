@@ -5,7 +5,7 @@ Feature: Update store details Feature
     Given user is logged in as a "admin"
     And user is on the stores page
 
-  @HappyPath1
+  @HappyPath
   Scenario: Admin can update Name, Description, Location and Admins
     When user clicks edit button
     And user edits name
@@ -15,6 +15,7 @@ Feature: Update store details Feature
     Then user clicks the submit button
     Then user should see a success message for the update
     Then assert Changes reflect in the stores list
+    Then assert the updated data via API
 
   @NegativePath
   Scenario: An error appears for invalid or missing inputs
@@ -23,3 +24,6 @@ Feature: Update store details Feature
     And user clicks the submit button
     Then user should see name is required error message
     And assert the negative editing via API
+
+
+
