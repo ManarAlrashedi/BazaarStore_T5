@@ -17,7 +17,7 @@ import org.junit.runner.RunWith;
                 "src/test/resources/features/adminEditing.feature",
                 "src/test/resources/features/stores.feature"
         },
-        tags = "@Smoke",
+        tags = "@customer",
         plugin = {"pretty", "html:target/cucumber-reports"}
 )
 public class SmokeTestRunner {
