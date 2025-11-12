@@ -201,6 +201,7 @@ public abstract class BasePage {
     }
 
     public void switchToFrame(By frameLocator) {
+
         Driver.getDriver().switchTo().frame(findElement(frameLocator));
     }
 

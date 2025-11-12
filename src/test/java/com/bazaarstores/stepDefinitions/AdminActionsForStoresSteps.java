@@ -2,14 +2,13 @@ package com.bazaarstores.stepDefinitions;
 
 import com.bazaarstores.pages.AllPages;
 import com.github.javafaker.Faker;
-import io.cucumber.java.PendingException;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class AdminActionsSteps {
+public class AdminActionsForStoresSteps {
 
     AllPages allPages = new AllPages();
     Faker faker =new Faker();
