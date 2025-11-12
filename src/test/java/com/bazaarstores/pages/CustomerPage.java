@@ -13,9 +13,9 @@ import java.time.Duration;
 import java.util.List;
 
 import static java.lang.Thread.sleep;
+import static org.junit.Assert.assertEquals;
 
 public class CustomerPage extends BasePage {
-
     // ================= Locators =================
     public final By productCards = By.cssSelector(".product-card, .product-item, .product");
     public final By productName = By.cssSelector(".product-name, h2, h3");

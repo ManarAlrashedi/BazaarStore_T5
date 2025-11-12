@@ -8,6 +8,8 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+
 public class UsersPage extends BasePage {
 
     WebDriver driver;
@@ -97,4 +99,22 @@ public class UsersPage extends BasePage {
     public boolean isUserStillPresentInList(String nameUser) {
         return isDisplayed(By.xpath(String.format(userName, nameUser)));
     }
+    private final By addUserButton = By.cssSelector("button.btn.btn-outline-primary.no-hover.float-start.float-lg-end");
+    private final By successMessage = By.xpath("//div[@class='toast-title']");
+    private final By nameAdded = By.xpath("//tr[td[contains(.,'lama')]]");
+
+
+
+    public void clickAddUser() {
+        click(addUserButton);
+    }
+
+public UsersPage successMessage(){
+        assertEquals("Success",getText(successMessage));
+        return this;
+}
+public boolean isNameAdded(){
+  return isDisplayed(nameAdded) ;
+}
+
 }
