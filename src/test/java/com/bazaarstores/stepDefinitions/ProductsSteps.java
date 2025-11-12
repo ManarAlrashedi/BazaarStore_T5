@@ -101,15 +101,18 @@ public class ProductsSteps {
     }
 
     @Then("user clicks the submit button")
-    public void user_clicks_the_submit_button() {allPages.getProductsPage().submit();}
+    public void user_clicks_the_submit_button() {
+        allPages.getProductsPage().submit();}
 
     @Then("user should see a success message for the update")
     public void user_should_see_a_success_message_for_the_update() {
+
         allPages.getProductsPage().successMessage();
     }
 
     @Then("user should see a error message for required field")
-    public void user_should_see_a_error_message_for_required_field() {allPages.getProductsPage().missingRequiredFieldMessage();}
+    public void user_should_see_a_error_message_for_required_field() {
+        allPages.getProductsPage().missingRequiredFieldMessage();}
 
 
 }

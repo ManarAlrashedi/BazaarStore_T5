@@ -4,17 +4,17 @@ import com.bazaarstores.pages.AllPages;
 import com.bazaarstores.pages.UsersPage;
 import com.bazaarstores.utilities.Driver;
 import com.github.javafaker.Faker;
-import io.cucumber.java.PendingException;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class AdminActionsSteps {
+public class AdminActionsForStoresSteps {
 
     AllPages allPages = new AllPages();
     Faker faker =new Faker();
+    //public String newStore;
 
     @Then("The ADDSTORE button should be visible")
     public void theADDSTOREButtonShouldBeVisible() {
@@ -39,7 +39,7 @@ public class AdminActionsSteps {
     public void adminFillsTheFormExceptTheNameField() {
         allPages.getCreateStorePage()
                 .enterLocation(faker.address().city())
-                .selectAdmin("Evie Larson")
+                .selectAdmin("Store Manager")
                 .enterDescription(faker.lorem().paragraph());
 
 
@@ -55,7 +55,7 @@ public class AdminActionsSteps {
     public void adminFillsTheFormExceptTheLocationField() {
         allPages.getCreateStorePage()
                 .enterName("TeamFive")
-                .selectAdmin("Evie Larson")
+                .selectAdmin("Store Manager")
                 .enterDescription(faker.lorem().paragraph());
 
     }
@@ -71,7 +71,7 @@ public class AdminActionsSteps {
         allPages.getCreateStorePage()
                 .enterName("TeamFive")
                 .enterLocation(faker.address().city())
-                .selectAdmin("Evie Larson");
+                .selectAdmin("Store Manager");
     }
 
     @Then("A validation message for the Description field should be displayed")
@@ -116,6 +116,7 @@ public class AdminActionsSteps {
 
     @Then("new store should be visible in the store list")
     public void newStoreShouldBeVisibleInTheStoreList() {
+
       allPages.getStoresPage().NewStore();
 
     }

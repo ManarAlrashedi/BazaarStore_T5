@@ -64,7 +64,7 @@ Feature: Admin Functionality
   Scenario: New store appears in the list
     When admin user navigates to store management page
     Then new store should be visible in the store list
-    #And assert the store Adding via API
+    And assert the store Adding via API
 
 
 
