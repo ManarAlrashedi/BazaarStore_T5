@@ -9,6 +9,8 @@ public class AllPages {
     private CustomerCartPage customerCartPage;
     private StoresPage storesPage;
     private CreateStorePage createStorePage;
+    private UsersPage usersPage;
+
 
 
     public LoginPage getLoginPage() {
@@ -56,5 +58,12 @@ public class AllPages {
             createStorePage = new CreateStorePage();
         }
         return createStorePage;
+    }
+
+    public UsersPage getUsersPage () {
+        if (usersPage == null) {
+            usersPage = new UsersPage();
+        }
+        return usersPage;
     }
 }

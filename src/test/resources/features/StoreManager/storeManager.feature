@@ -8,7 +8,7 @@ Feature: Store Manager Functionality
     When store manager navigates to the products page
     Then verify the list of products displayed
     And each product should have a name, price, stoke, category, image, and action buttons
-    #And assert the products catalog via API
+    And assert the products catalog via API
 
 
 

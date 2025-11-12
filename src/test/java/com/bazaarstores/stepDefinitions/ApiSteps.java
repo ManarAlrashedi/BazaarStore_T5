@@ -117,5 +117,13 @@ public class ApiSteps {
         String actualProductName = jsonPath.getString("find{it.email=='" + email + "'}.productName");
         assertNull(actualProductName);
     }
+
+    @And("assert the user deletion via API")
+    public void assertTheUserDeletionViaAPI() {
+        Response response = given(spec()).get("/users");
+        JsonPath jsonPath = response.jsonPath();
+        String actualUserEmail = jsonPath.getString("find{it.email=='" + email + "'}.email");
+        assertNull(actualUserEmail);
+    }
 }
 
