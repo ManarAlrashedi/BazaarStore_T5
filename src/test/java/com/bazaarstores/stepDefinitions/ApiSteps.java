@@ -1,6 +1,7 @@
 package com.bazaarstores.stepDefinitions;
 
 
+import com.bazaarstores.pages.CreateStorePage;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -124,6 +125,16 @@ public class ApiSteps {
         JsonPath jsonPath = response.jsonPath();
         String actualUserEmail = jsonPath.getString("find{it.email=='" + email + "'}.email");
         assertNull(actualUserEmail);
+    }
+
+    @And("assert the store Adding via API")
+    public void assertTheStoreAddingViaAPI() {
+
+        String storeName = CreateStorePage.storeName;
+        Response response = given(spec()).get("/stores");
+        JsonPath jsonPath = response.jsonPath();
+        String actualStoreName = jsonPath.getString("find{it.email=='" + email + "'}.storeName");
+        assertEquals(storeName, actualStoreName);
     }
 }
 
