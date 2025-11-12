@@ -59,7 +59,6 @@ Feature: Admin Functionality
     Then admin see Success Message
 
 
-
   @ValidateNewStore
   Scenario: New store appears in the list
     When admin user navigates to store management page
