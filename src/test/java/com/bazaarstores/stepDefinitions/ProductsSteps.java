@@ -70,7 +70,7 @@ public class ProductsSteps {
 
     @And("the catalog should reflect the updated state")
     public void theCatalogShouldReflectTheUpdatedState() {
-            Assert.assertFalse(allPages.getProductsPage().isProductsDisplayed());
+        Assert.assertFalse(allPages.getProductsPage().isProductsDisplayed());
     }
 
 

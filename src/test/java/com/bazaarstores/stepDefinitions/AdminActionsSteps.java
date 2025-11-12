@@ -152,10 +152,10 @@ public class AdminActionsSteps {
                 allPages.getStoresPage().isStoreDeletedMessageDisplayed());
     }
 
-    @Then("the store should be removed from the store list")
-    public void the_store_should_be_removed_from_the_store_list() {
+    @Then("the store {string} should be removed from the store list")
+    public void the_store_should_be_removed_from_the_store_list(String name) {
         Assert.assertTrue("Store should be removed from the list",
-                allPages.getStoresPage().isStoreRemoveFromList());
+                allPages.getStoresPage().isStoreRemoveFromList(name));
     }
 
     @And("admin user cancel the deletion")
@@ -165,12 +165,11 @@ public class AdminActionsSteps {
                 allPages.getStoresPage().isDeleteConfirmationDialogDisplayed());
     }
 
-    @Then("the store should still be present in the store list")
-    public void theStoreShouldStillBePresentInTheStoreList() {
+    @Then("the store {string} should still be present in the store list")
+    public void theStoreShouldStillBePresentInTheStoreList(String name) {
         Assert.assertTrue("Store should still be present in the list",
-                allPages.getStoresPage().isStoreStillPresentInList());
+                allPages.getStoresPage().isStoreStillPresentInList(name));
     }
 
 
 }
-//Store creation failed. Please try again.
