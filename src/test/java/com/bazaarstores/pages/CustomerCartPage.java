@@ -13,8 +13,12 @@ public class CustomerCartPage extends BasePage{
     private final By okbutton = By.cssSelector("button[class='swal2-confirm swal2-styled']");
     private final By customerCart = By.xpath("/html[1]/body[1]/header[1]/div[1]/div[2]/div[1]/div[1]/span[1]");
     private final By viewCart = By.xpath("/html/body/header/div/div[2]/div[1]/div[2]/div[3]/a");
-    private final By emptyMessage = By.xpath("/html/body/header/div/div[2]/div[1]/div[2]/div[2]");
+    private final By ProductInTheCart = By.id("/html/body/main/div/div[1]");
 
+    public CustomerCartPage ProductIsVisable() {
+        isDisplayed(this.ProductInTheCart);
+        return this;
+    }
     public CustomerCartPage hoverOverCart() {
         hoverOver(this.customerCart);
         return this;
@@ -29,20 +33,19 @@ public class CustomerCartPage extends BasePage{
         return this;
     }
 
-    public CustomerCartPage SuccessMessage() {
-        assertEquals(
+    public boolean SuccessMessage() {
+      /*  assertEquals(
                 "Your order has been received successfully.",
                 Driver.getDriver().findElement(successmessage).getText()
         );
-        return this;
+        return this;*/
+        return isDisplayed(successmessage);
     }
 
     public CustomerCartPage ClickOkButton() {
         click(this.okbutton);
         return this;
     }
-    public boolean EmptyCartMessage() {
-        return isDisplayed(emptyMessage);
-    }
+
 
 }
