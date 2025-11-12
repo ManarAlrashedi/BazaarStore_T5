@@ -15,7 +15,6 @@ public class DashboardPage extends BasePage {
     private final By userName = By.cssSelector(".user-name, [class*='username']");
     private final By storeLink = By.xpath("//a[@class='sidebar-link']//span[.='Store']");
     private final By usersLink = By.xpath("//a[@class='sidebar-link']//span[.='Users']");
-
     // Navigation Methods
     public void clickProfileLink() {
         click(profileLink);

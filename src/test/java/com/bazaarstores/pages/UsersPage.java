@@ -1,11 +1,13 @@
 package com.bazaarstores.pages;
 
+import com.bazaarstores.stepDefinitions.UsersSteps;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 
 import java.sql.Driver;
 
+import static com.bazaarstores.utilities.Driver.getDriver;
 import static org.junit.Assert.assertEquals;
 
 
@@ -30,7 +32,7 @@ public UsersPage successMessage(){
         return this;
 }
 public boolean isNameAdded(){
-  return isDisplayed(nameAdded);
+  return isDisplayed(nameAdded) ;
 }
 
 }

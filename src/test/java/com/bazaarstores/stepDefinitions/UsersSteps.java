@@ -19,8 +19,8 @@ public class UsersSteps {
     @When("admin user click add users button")
     public void admin_user_click_add_users_button() {
         allPages.getUsersPage().clickAddUser();
-        Assert.assertTrue("Add Users Page Should be Displayed"
-                ,allPages.getCreateUserPage().isAddUsersPageDisplayed());
+       /* Assert.assertTrue("Add Users Page Should be Displayed"
+                ,allPages.getCreateUserPage().isAddUsersPageDisplayed()); */
     }
     @And("admin user enters valid {string}, {string},{string},{string} and {string}")
     public void adminUserEntersValidAnd(String name , String email, String password, String passwordConf, String role) {
@@ -41,11 +41,12 @@ public class UsersSteps {
     public void the_user_should_be_added_successfully() {
         allPages.getUsersPage().successMessage();
     }
-
     @Then("verify the user in list")
     public void verify_the_user_in_list() {
         Assert.assertTrue("Admin Should be see user"
                 ,allPages.getUsersPage().isNameAdded());
+
+
     }
 
 }

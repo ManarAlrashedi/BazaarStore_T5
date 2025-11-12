@@ -9,6 +9,9 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static com.bazaarstores.stepDefinitions.LoginSteps.loginEmail;
 import static com.bazaarstores.stepDefinitions.ProductsSteps.catalog;
 import static com.bazaarstores.stepDefinitions.ProductsSteps.price;
@@ -117,5 +120,6 @@ public class ApiSteps {
         String actualProductName = jsonPath.getString("find{it.email=='" + email + "'}.productName");
         assertNull(actualProductName);
     }
+
 }
 

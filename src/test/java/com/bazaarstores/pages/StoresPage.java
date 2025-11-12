@@ -1,10 +1,13 @@
 package com.bazaarstores.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class StoresPage extends BasePage{
+public class StoresPage extends BasePage {
 
     private final By pageTitle = By.tagName("h3");
     private final By storeName = By.xpath("//tr[td[contains(.,'%s')]]");
@@ -64,25 +67,29 @@ public class StoresPage extends BasePage{
         //waitForElementToDisappear(cancelButton);
     }
 
-    public  boolean isStoreStillPresentInList() {
+    public boolean isStoreStillPresentInList() {
 
         return isDisplayed(storeName);
     }
 
-    public  boolean isAddStoreButtonVisible() {
+    public boolean isAddStoreButtonVisible() {
         return isDisplayed(addStoreButton);
 
-    } public StoresPage ClickAddStoreButton() {
+    }
 
-                click(addStoreButton);
+    public StoresPage ClickAddStoreButton() {
+
+        click(addStoreButton);
         return this;
     }
+
     public StoresPage successMessage() {
         assertEquals(
                 "Success",
                 getText(this.successMessage));
         return this;
     }
+
     public StoresPage FailMessage() {
         assertEquals(
                 "Error",
@@ -95,14 +102,68 @@ public class StoresPage extends BasePage{
         return isDisplayed(newStore);
     }
 
-        private final By storeList = By.cssSelector(".store-item");
+    private final By storeList = By.cssSelector(".store-item");
 
-        public int getNumberOfStores() {
-            return findElements(storeList).size();
-        }
-
-        public boolean isStoresListDisplayed() {
-            return isDisplayed(storeList);
-        }
+    public int getNumberOfStores() {
+        return findElements(storeList).size();
     }
+
+
+/*
+    private final By storesTable = By.id("table-bordered");
+    private final By storesTableRows = By.xpath("//*[@id='table-bordered']//table/tbody/tr");
+
+    public boolean isStoresTableVisible() {
+        return isDisplayed(storesTable);
+    }
+
+    public int getVisibleStoresCount() {
+        List<WebElement> rows = findElements(storesTableRows);
+        return rows.size();
+    }
+
+    public String getVisibleStoreName(int index) {
+        By locator = By.xpath("//*[@id='table-bordered']//table/tbody/tr[" + index + "]/td[1]");
+        return getText(locator);
+    }
+
+    public String getVisibleStoreDescription(int index) {
+        By locator = By.xpath("//*[@id='table-bordered']//table/tbody/tr[" + index + "]/td[2]");
+        return getText(locator);
+    }
+
+    public String getVisibleStoreAdminName(int index) {
+        By locator = By.xpath("//*[@id='table-bordered']//table/tbody/tr[" + index + "]/td[3]");
+        return getText(locator);
+    }
+
+    public String getVisibleStoreAction(int index) {
+        By locator = By.xpath("//*[@id='table-bordered']//table/tbody/tr[" + index + "]/td[4]");
+        return getText(locator);
+    }
+
+    public boolean areStoreDetailsDisplayed() {
+        int count = getStoresCount();
+        for (int i = 1; i <= count; i++) {
+            String name = getStoreName(i);
+            String description = getStoreDescription(i);
+            String admin = getStoreAdminName(i);
+            String action = getStoreAction(i);
+            if (name.isEmpty() || description.isEmpty() || admin.isEmpty() || action.isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    public String getStoreName(int index) {
+        By getStoreNameLocator = By.xpath("//*[@id='table-bordered']//table/tbody/tr[1]/td[1][" + index + "]");
+        return getText(storeNameLocator);
+    }
+    private String getStoreDescription(int i) {
+    }
+ */
+}
+
 
