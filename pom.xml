@@ -95,8 +95,8 @@
                 <configuration>
                     <!-- Parallel execution at scenario/method level -->
                     <parallel>methods</parallel>
-                    <threadCount>${threadCount}</threadCount>
-                    <perCoreThreadCount>true</perCoreThreadCount>
+                   <!-- <threadCount>${threadCount}</threadCount>
+                    <perCoreThreadCount>true</perCoreThreadCount>-->
 
                     <!-- Fork settings for isolated test execution -->
                     <!--                    <forkCount>2</forkCount>-->
