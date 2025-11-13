@@ -94,7 +94,7 @@
                 <version>3.5.4</version>
                 <configuration>
                     <!-- Parallel execution at scenario/method level -->
-                    <parallel>methods</parallel>
+                    <!--<parallel>methods</parallel>-->
                    <!-- <threadCount>${threadCount}</threadCount>
                     <perCoreThreadCount>true</perCoreThreadCount>-->
 
