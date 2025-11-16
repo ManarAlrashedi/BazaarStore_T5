@@ -233,10 +233,4 @@ public abstract class BasePage {
 
         return ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
     }
-    public void login(String customerEmail, String defaultPassword) {
-    }
-
-
-    public void clickUsersLink() {
-    }
 }

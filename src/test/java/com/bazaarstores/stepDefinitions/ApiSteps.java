@@ -1,8 +1,9 @@
 package com.bazaarstores.stepDefinitions;
 
 
-import com.bazaarstores.pages.CreateStorePage;
-import io.cucumber.java.PendingException;
+import com.bazaarstores.pages.Admin.CreateStorePage;
+import com.bazaarstores.stepDefinitions.Admin.StoreSteps;
+import com.bazaarstores.stepDefinitions.StoreManager.ProductsSteps;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -10,11 +11,11 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 
-import static com.bazaarstores.stepDefinitions.LoginSteps.loginEmail;
-import static com.bazaarstores.stepDefinitions.ProductsSteps.catalog;
-import static com.bazaarstores.stepDefinitions.ProductsSteps.price;
-import static com.bazaarstores.stepDefinitions.RegistrationSteps.email;
-import static com.bazaarstores.stepDefinitions.RegistrationSteps.fullName;
+import static com.bazaarstores.stepDefinitions.Login.LoginSteps.loginEmail;
+import static com.bazaarstores.stepDefinitions.StoreManager.ProductsSteps.catalog;
+import static com.bazaarstores.stepDefinitions.StoreManager.ProductsSteps.price;
+import static com.bazaarstores.stepDefinitions.Registration.RegistrationSteps.email;
+import static com.bazaarstores.stepDefinitions.Registration.RegistrationSteps.fullName;
 import static com.bazaarstores.utilities.ApiUtilities.spec;
 import static io.restassured.RestAssured.given;
 import static junit.framework.TestCase.assertNotNull;
@@ -156,6 +157,14 @@ public class ApiSteps {
         Response response = given(spec()).get("/stores");
         JsonPath jsonPath = response.jsonPath();
         assertNotNull(jsonPath.getString("find{it.name=='" + StoreSteps.originalName + "'}.name"));
+    }
+
+    @Then("assert the new product in the catalog via API")
+    public void assert_the_new_product_in_the_catalog_via_api() {
+        Response response = given(spec()).get("/products");
+        JsonPath jsonPath = response.jsonPath();
+        String actualProductName = jsonPath.getString("find{it.email=='" + email + "'}.productName");
+        assertEquals(ProductsSteps.name, actualProductName);
     }
 }
 

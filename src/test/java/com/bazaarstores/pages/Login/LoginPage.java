@@ -1,5 +1,8 @@
-package com.bazaarstores.pages;
+package com.bazaarstores.pages.Login;
 
+import com.bazaarstores.pages.BasePage;
+import com.bazaarstores.pages.DashboardPage;
+import com.bazaarstores.pages.Registration.RegistrationPage;
 import com.bazaarstores.utilities.Driver;
 import org.openqa.selenium.By;
 

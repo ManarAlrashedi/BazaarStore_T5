@@ -1,12 +1,22 @@
 package com.bazaarstores.pages;
 
+import com.bazaarstores.pages.Admin.CreateStorePage;
+import com.bazaarstores.pages.Admin.CreateUserPage;
+import com.bazaarstores.pages.Admin.StoresPage;
+import com.bazaarstores.pages.Admin.UsersPage;
+import com.bazaarstores.pages.Customer.CartPage;
+import com.bazaarstores.pages.Customer.CustomerPage;
+import com.bazaarstores.pages.Login.LoginPage;
+import com.bazaarstores.pages.Registration.RegistrationPage;
+import com.bazaarstores.pages.StoreManager.ProductsPage;
+
 public class AllPages {
 
     private LoginPage loginPage;
     private RegistrationPage registrationPage;
     private DashboardPage dashboardPage;
     private ProductsPage productsPage;
-    private CustomerCartPage customerCartPage;
+    private CartPage cartPage;
     private StoresPage storesPage;
     private CustomerPage customerPage;
     private UsersPage usersPage;
@@ -47,11 +57,11 @@ public class AllPages {
         }
         return productsPage;
     }
-    public CustomerCartPage getCustomerCartPage () {
-        if (customerCartPage == null) {
-            customerCartPage = new CustomerCartPage();
+    public CartPage getCartPage () {
+        if (cartPage == null) {
+            cartPage = new CartPage();
         }
-        return customerCartPage;
+        return cartPage;
     }
     public CreateStorePage getCreateStorePage () {
         if (createStorePage == null) {

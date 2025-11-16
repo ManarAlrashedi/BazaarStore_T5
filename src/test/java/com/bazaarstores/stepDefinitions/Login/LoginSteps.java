@@ -1,4 +1,4 @@
-package com.bazaarstores.stepDefinitions;
+package com.bazaarstores.stepDefinitions.Login;
 
 
 import com.bazaarstores.pages.AllPages;

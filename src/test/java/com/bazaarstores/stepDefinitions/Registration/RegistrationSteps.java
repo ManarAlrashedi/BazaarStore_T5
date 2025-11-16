@@ -1,4 +1,4 @@
-package com.bazaarstores.stepDefinitions;
+package com.bazaarstores.stepDefinitions.Registration;
 
 import com.bazaarstores.pages.AllPages;
 import com.bazaarstores.utilities.ConfigReader;

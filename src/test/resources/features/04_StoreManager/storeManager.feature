@@ -10,7 +10,30 @@ Feature: Store Manager Functionality
     And each product should have a name, price, stoke, category, image, and action buttons
     And assert the products catalog via API
 
+  @AddNewProduct
+  Scenario: Store Manager Adds a New Product
+    When store manager navigates to the products page
+    When the Store Manager clicks the Add New Product button
+    And fills in the product details
+    And submits the new product form
+    Then should see a success message for the addition and the product display in list
+    And assert the new product in the catalog via API
 
+  @AddProductNegative
+  Scenario: Store Manager Adds a New Product
+    When store manager navigates to the products page
+    When the Store Manager clicks the Add New Product button
+    And fills in the product details with missing required fields
+    And submits the new product form
+    Then should see a error message for the addition
+
+  @AddProductNegative
+  Scenario: Store Manager Adds a New Product
+    When store manager navigates to the products page
+    When the Store Manager clicks the Add New Product button
+    And fills in the product details with duplicate product SKU
+    And submits the new product form
+    Then should see a error message for the duplication
 
   @ManagerDeleteProduct
   Scenario: Verify that Store Manager can delete any item
@@ -26,17 +49,13 @@ Feature: Store Manager Functionality
     And clicks the cancel button
     Then the product should still exist in the catalog
 
-
   @DeletionProof
   Scenario: Verify deleted proof is not listed in catalog
     When store manager navigates to the products page
     And the catalog should reflect the updated state
     Then assert the product been removed via API
 
-
-
   @HappyPath @UpdateProduct
-
   Scenario: Can update any product details
     And user goes to the products page
     When user clicks the edit button

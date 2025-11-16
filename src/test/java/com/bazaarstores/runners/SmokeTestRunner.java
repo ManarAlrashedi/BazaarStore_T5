@@ -9,12 +9,10 @@ import org.junit.runner.RunWith;
         features = {
                 "src/test/resources/features/registration.feature",
                 "src/test/resources/features/login.feature",
-                "src/test/resources/features/customer_cart.feature",
-                "src/test/resources/features/CustomerPage.feature",
+                "src/test/resources/features/Customer.feature",
                 "src/test/resources/features/storeManager.feature",
                 "src/test/resources/features/admin_actions_stores.feature",
                 "src/test/resources/features/admin_actions_users.feature",
-                "src/test/resources/features/adminEditing.feature",
                 "src/test/resources/features/stores.feature"
         },
         tags = "@customer",

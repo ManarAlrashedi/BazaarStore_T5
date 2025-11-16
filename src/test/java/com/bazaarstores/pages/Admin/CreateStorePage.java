@@ -1,11 +1,10 @@
-package com.bazaarstores.pages;
+package com.bazaarstores.pages.Admin;
 
-import com.bazaarstores.stepDefinitions.StoreSteps;
+import com.bazaarstores.pages.BasePage;
 import com.bazaarstores.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 
-import static com.bazaarstores.stepDefinitions.RegistrationSteps.email;
 import static org.junit.Assert.assertEquals;
 
 public class CreateStorePage extends BasePage {

@@ -1,5 +1,6 @@
 package com.bazaarstores.pages;
 
+import com.bazaarstores.pages.Login.LoginPage;
 import org.openqa.selenium.By;
 
 public class DashboardPage extends BasePage {
