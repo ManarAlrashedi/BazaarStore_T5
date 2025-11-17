@@ -137,6 +137,7 @@ public class ApiSteps {
         String actualStoreName = jsonPath.getString("find{it.email=='" + email + "'}.storeName");
         assertEquals(storeName, actualStoreName);
     }
+
     @Then("assert the updated data via API")
     public void assert_the_updated_data_via_api() {
         Response response = given(spec()).get("/stores");

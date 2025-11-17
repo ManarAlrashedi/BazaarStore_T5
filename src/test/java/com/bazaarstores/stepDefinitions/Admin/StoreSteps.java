@@ -8,7 +8,7 @@ public class StoreSteps {
 
     AllPages allPages = new AllPages();
 
-    public static String name=Faker.instance().name().name();
+    public static String name;
     public static String description =Faker.instance().lorem().sentence();
     public static String loaction=Faker.instance().address().country();
     public static String admin;
@@ -24,7 +24,7 @@ public class StoreSteps {
 
     @When("user edits name")
     public void user_edits_name() {
-        allPages.getStoresPage().name(StoreSteps.name);
+        allPages.getStoresPage().name("books");
     }
 
     @When("user clears name")

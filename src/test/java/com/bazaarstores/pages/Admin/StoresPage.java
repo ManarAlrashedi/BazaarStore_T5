@@ -130,6 +130,7 @@ public class StoresPage extends BasePage {
     public StoresPage name(String name) {
         Driver.getDriver().findElement(this.name).clear();
         Driver.getDriver().findElement(this.name).sendKeys(name);
+        StoreSteps.name=name;
         return this;
     }
 

@@ -56,7 +56,7 @@ Feature: Admin Functionality
     And clicks Submit Button
     And failing message appear
 
-  @AddedStoreHappyPath @no
+  @AddedStoreHappyPath
   Scenario: Verify store creation with valid input
     When admin user navigates to store management page
     And Admin click ADDSTORE button and in create store page
@@ -71,7 +71,7 @@ Feature: Admin Functionality
     Then new store should be visible in the store list
     #And assert the store Adding via API
 
-  @HappyPath @no
+  @HappyPath
   Scenario: Admin can update Name, Description, Location and Admins
     Given user is on the stores page
     When user clicks edit button
@@ -97,16 +97,16 @@ Feature: Admin Functionality
   Scenario: Delete Store Happy Path
     When admin user navigates to store management page
     And verify at least one store exists in the system
-    And admin user clicks delete button for a "..."
+    And admin user clicks delete button for a "books"
     And admin user confirms the deletion
-    Then the store "..." should be removed from the store list
+    Then the store "books" should be removed from the store list
     And assert the store deletion via API
 
   @DeleteStoreNegative
   Scenario: Delete Store Negative Path
     When admin user navigates to store management page
     And verify at least one store exists in the system
-    And admin user clicks delete button for a "..."
+    And admin user clicks delete button for a "books"
     And admin user cancel the deletion
-    Then the store "..." should still be present in the store list
+    Then the store "books" should still be present in the store list
     And assert the store deletion via API
