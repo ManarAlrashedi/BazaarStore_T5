@@ -1,5 +1,6 @@
-package com.bazaarstores.pages;
+package com.bazaarstores.pages.Admin;
 
+import com.bazaarstores.pages.BasePage;
 import org.openqa.selenium.By;
 
 public class CreateUserPage extends BasePage {
@@ -10,7 +11,7 @@ public class CreateUserPage extends BasePage {
     private final By passwordInput = By.xpath("//input[@placeholder='Password']");
     private final By passwordConfInput = By.xpath("//input[@placeholder='Password Confirmation']");
     private final By submitButton = By.xpath("//button[@type='submit']");
-
+    private final By errorMessage = By.xpath("//div[@class='alert alert-danger']");
 
     public boolean isAddUsersPageDisplayed() {
         return isDisplayed(pagetitle) && getText(pagetitle).equals("USERS");
@@ -28,14 +29,20 @@ public class CreateUserPage extends BasePage {
         return this;
     }
     public CreateUserPage enterPassword(String password){
+        findElement(passwordInput).clear();
         sendKeys(passwordInput,password);
         return this;
     }
     public CreateUserPage enterPasswordConf(String passwordConf){
+        findElement(passwordConfInput).clear();
         sendKeys(passwordConfInput,passwordConf);
         return this;
     }
     public void clickSubmit() {
         click(submitButton);
+    }
+
+    public void errorMessage() {
+        isDisplayed(errorMessage);
     }
 }

@@ -1,6 +1,7 @@
-package com.bazaarstores.pages;
+package com.bazaarstores.pages.Admin;
 
-import com.bazaarstores.stepDefinitions.StoreSteps;
+import com.bazaarstores.pages.BasePage;
+import com.bazaarstores.stepDefinitions.Admin.StoreSteps;
 import com.bazaarstores.utilities.Driver;
 import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
@@ -10,7 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import static org.junit.Assert.assertEquals;
 
-public class StoresPage extends BasePage{
+public class StoresPage extends BasePage {
 
     private final By pageTitle = By.tagName("h3");
     private final String storeName = "//tr[td[contains(.,'%s')]]";
@@ -166,5 +167,22 @@ public class StoresPage extends BasePage{
                 && actualAdmin.equals(actualAdmin);
     }
 
+    public boolean isStoresListDisplayed() {
+        return isDisplayed(storesRows);
+    }
+
+    public boolean areStoreEntriesComplete() {
+        for (WebElement row : findElements(storesRows)) {
+            String name = row.findElement(By.xpath("./td[1]")).getText().trim();
+            String description = row.findElement(By.xpath("./td[2]")).getText().trim();
+            String adminName = row.findElement(By.xpath("./td[3]")).getText().trim();
+            WebElement actionButtons = row.findElement(By.xpath("./td[4]"));
+
+            if (name.isEmpty() || description.isEmpty() || adminName.isEmpty() || actionButtons == null) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
 

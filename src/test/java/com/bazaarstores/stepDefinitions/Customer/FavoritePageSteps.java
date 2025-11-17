@@ -1,4 +1,4 @@
-package com.bazaarstores.stepDefinitions;
+package com.bazaarstores.stepDefinitions.Customer;
 
 
 import com.bazaarstores.utilities.Driver;

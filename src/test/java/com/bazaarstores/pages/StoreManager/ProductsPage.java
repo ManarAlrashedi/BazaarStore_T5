@@ -1,6 +1,7 @@
-package com.bazaarstores.pages;
+package com.bazaarstores.pages.StoreManager;
 
-import com.bazaarstores.stepDefinitions.ProductsSteps;
+import com.bazaarstores.pages.BasePage;
+import com.bazaarstores.stepDefinitions.StoreManager.ProductsSteps;
 import com.bazaarstores.utilities.Driver;
 import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
@@ -26,8 +27,11 @@ public class ProductsPage extends BasePage {
     private final By submit = By.cssSelector("button[type='submit']");
     private final By stock = By.id("stock-column");
     private final By name = By.id("name-column");
-    private final By missingRequiredFieldMessage = By.xpath("//li[.='The stock field is required.']");
+    private final By sku = By.id("sku-column");
+    private final By category = By.id("category-column");
+    private final By missingRequiredFieldMessage = By.cssSelector(".alert.alert-danger");
     private final By ProductToBeDeleted = By.xpath("//table//tr//td[contains(text(),'Hayatesting')]");
+    private final By addNewProductButton = By.cssSelector("button.btn.btn-outline-primary.no-hover.float-start.float-lg-end");
 
     public boolean isProductsPageDisplayed() {
 
@@ -160,5 +164,50 @@ public class ProductsPage extends BasePage {
                 Driver.getDriver().findElement(successMessage).getText()
         );
         return this;
+    }
+
+//-------------US11-----------------Abdulrahman
+    public void clickAddNewProductButton() {
+        click(addNewProductButton);
+    }
+    public ProductsPage enterNameProduct(String name) {
+        sendKeys(this.name, name);
+        return this;
+    }
+
+    public ProductsPage enterPriceProduct(double price) {
+        sendKeys(this.price, String.valueOf(price));
+        return this;
+    }
+
+    public ProductsPage enterStockProduct(int stock) {
+        sendKeys(this.stock, String.valueOf(stock));
+        return this;
+    }
+
+    public ProductsPage enterSKUProduct(String sku) {
+        sendKeys(this.sku, sku);
+        return this;
+    }
+
+    public ProductsPage selectCategory(String category) {
+        Select select = new Select(findElement(this.category));
+        select.selectByVisibleText(category);
+        return this;
+    }
+
+    public void clickSubmit() {
+        click(submit);
+    }
+
+    public boolean isNewProductDisplayed(String name) {
+        By newProductLocator = By.xpath("//td[contains(text(),'" + name + "')]");
+        return isDisplayed(newProductLocator);
+    }
+
+    public void duplicateSKUMessage() {
+        assertEquals("The sku has already been taken.",
+                Driver.getDriver().findElement(missingRequiredFieldMessage).getText()
+        );
     }
 }

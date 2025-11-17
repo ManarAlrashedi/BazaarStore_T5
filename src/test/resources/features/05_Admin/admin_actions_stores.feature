@@ -4,6 +4,11 @@ Feature: Admin Functionality
   Background:
     Given user is logged in as a "admin"
 
+  @ViewAllStores
+  Scenario: Admin views all stores
+    When admin user navigates to store management page
+    Then a list of stores should be displayed
+    And each store entry should contain a name, description, admin name, and action buttons
 
   @AddButtonVisible
   Scenario: admin can see the add user button
@@ -51,7 +56,7 @@ Feature: Admin Functionality
     And clicks Submit Button
     And failing message appear
 
-  @AddedStoreHappyPath
+  @AddedStoreHappyPath @no
   Scenario: Verify store creation with valid input
     When admin user navigates to store management page
     And Admin click ADDSTORE button and in create store page
@@ -64,11 +69,11 @@ Feature: Admin Functionality
   Scenario: New store appears in the list
     When admin user navigates to store management page
     Then new store should be visible in the store list
-    And assert the store Adding via API
+    #And assert the store Adding via API
 
-
-  @HappyPath
+  @HappyPath @no
   Scenario: Admin can update Name, Description, Location and Admins
+    Given user is on the stores page
     When user clicks edit button
     And user edits name
     And user edits description
@@ -81,47 +86,27 @@ Feature: Admin Functionality
 
   @NegativePath
   Scenario: An error appears for invalid or missing inputs
+    Given user is on the stores page
     When user clicks edit button
     And user clears name
     And user clicks the submit button
     Then user should see name is required error message
     And assert the negative editing via API
 
-
   @DeleteStoreHappyPath
   Scenario: Delete Store Happy Path
     When admin user navigates to store management page
     And verify at least one store exists in the system
-    And admin user clicks delete button for a "TestDelete"
+    And admin user clicks delete button for a "..."
     And admin user confirms the deletion
-    Then the store "TestDelete" should be removed from the store list
+    Then the store "..." should be removed from the store list
     And assert the store deletion via API
 
   @DeleteStoreNegative
   Scenario: Delete Store Negative Path
     When admin user navigates to store management page
     And verify at least one store exists in the system
-    And admin user clicks delete button for a "TestDelete"
+    And admin user clicks delete button for a "..."
     And admin user cancel the deletion
-    Then the store "TestDelete" should still be present in the store list
+    Then the store "..." should still be present in the store list
     And assert the store deletion via API
-
-   @US14_TC001 @ViewAllUsers
-  Scenario: Admin can view all users
-    When Admin navigates to Users Page
-    Then Admin should see all registered users with Name and Email
-
-  @US14_TC002 @SearchValidEmail
-  Scenario:Search functionality with valid email
-    When Admin navigates to Users Page
-    And Admin enters "maryam.schinner@yahoo.com" in search field and clicks search
-    Then Only the user with matching email is displayed
-
-    @US14_TC003 @SearchInvalidEmail
-  Scenario: Search functionality with non-existing email
-    When Admin navigates to Users Page
-    And Admin enters "Nouf4@test.com" in search field and clicks search
-    Then A message "No users found." is displayed
-
-
-

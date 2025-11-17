@@ -1,11 +1,11 @@
-package com.bazaarstores.pages;
+package com.bazaarstores.pages.Customer;
 
-import com.bazaarstores.utilities.Driver;
+import com.bazaarstores.pages.BasePage;
 import org.openqa.selenium.By;
 
 import static org.junit.Assert.assertEquals;
 
-public class CustomerCartPage extends BasePage{
+public class CartPage extends BasePage {
 
 
     private final By confirmbutton = By.id("clear-all");
@@ -15,20 +15,19 @@ public class CustomerCartPage extends BasePage{
     private final By viewCart = By.xpath("/html/body/header/div/div[2]/div[1]/div[2]/div[3]/a");
     private final By ProductInTheCart = By.id("/html/body/main/div/div[1]");
 
-    public CustomerCartPage ProductIsVisable() {
-        isDisplayed(this.ProductInTheCart);
-        return this;
+    public boolean ProductIsVisable() {
+        return isDisplayed(ProductInTheCart);
     }
-    public CustomerCartPage hoverOverCart() {
+    public CartPage hoverOverCart() {
         hoverOver(this.customerCart);
         return this;
     }
-    public CustomerCartPage ClickViewCart() {
+    public CartPage ClickViewCart() {
         click(this.viewCart);
         return this;
     }
 
-    public CustomerCartPage ClickConfirmButton() {
+    public CartPage ClickConfirmButton() {
         click(this.confirmbutton);
         return this;
     }
@@ -42,10 +41,9 @@ public class CustomerCartPage extends BasePage{
         return isDisplayed(successmessage);
     }
 
-    public CustomerCartPage ClickOkButton() {
+    public CartPage ClickOkButton() {
         click(this.okbutton);
         return this;
     }
-
 
 }
