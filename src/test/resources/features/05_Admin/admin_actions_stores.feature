@@ -71,6 +71,16 @@ Feature: Admin Store Functionality
     Then new store should be visible in the store list
     #And assert the store Adding via API
 
+
+  @NegativePath
+  Scenario: An error appears for invalid or missing inputs
+    Given user is on the stores page
+    When user clicks edit button
+    And user clears name
+    And user clicks the submit button
+    Then user should see name is required error message
+    And assert the negative editing via API
+
   @HappyPath
   Scenario: Admin can update Name, Description, Location and Admins
     Given user is on the stores page
@@ -84,23 +94,6 @@ Feature: Admin Store Functionality
     Then assert Changes reflect in the stores list
     Then assert the updated data via API
 
-  @NegativePath
-  Scenario: An error appears for invalid or missing inputs
-    Given user is on the stores page
-    When user clicks edit button
-    And user clears name
-    And user clicks the submit button
-    Then user should see name is required error message
-    And assert the negative editing via API
-
-  @DeleteStoreHappyPath
-  Scenario: Delete Store Happy Path
-    When admin user navigates to store management page
-    And verify at least one store exists in the system
-    And admin user clicks delete button for a "books"
-    And admin user confirms the deletion
-    Then the store "books" should be removed from the store list
-    And assert the store deletion via API
 
   @DeleteStoreNegative
   Scenario: Delete Store Negative Path
@@ -109,4 +102,13 @@ Feature: Admin Store Functionality
     And admin user clicks delete button for a "books"
     And admin user cancel the deletion
     Then the store "books" should still be present in the store list
+    And assert the store deletion via API
+
+  @DeleteStoreHappyPath
+  Scenario: Delete Store Happy Path
+    When admin user navigates to store management page
+    And verify at least one store exists in the system
+    And admin user clicks delete button for a "books"
+    And admin user confirms the deletion
+    Then the store "books" should be removed from the store list
     And assert the store deletion via API
