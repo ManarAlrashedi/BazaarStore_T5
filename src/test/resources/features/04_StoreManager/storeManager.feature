@@ -61,14 +61,14 @@ Feature: Store Manager Functionality
     Then user should see a success message for the update
     Then assert the products catalog via API
 
-  @CancelDelete @no5
+  @CancelDelete
   Scenario: Verify Store Manager cancels deletion from confirmation dialog
     When store manager navigates to the products page
     When the Store Manager clicks the delete button for a specific item
     And clicks the cancel button
     Then the product should still exist in the catalog
 
-  @ManagerDeleteProduct @no5
+  @ManagerDeleteProduct
   Scenario: Verify that Store Manager can delete any item
     When store manager navigates to the products page
     When the Store Manager clicks the delete button for a specific item

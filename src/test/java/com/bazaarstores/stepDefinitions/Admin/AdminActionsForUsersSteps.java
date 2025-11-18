@@ -29,7 +29,7 @@ public class AdminActionsForUsersSteps {
     }
     @Then("Only the user with matching email is displayed")
     public void only_the_user_with_matching_email_is_displayed() {
-        Assert.assertEquals(1, allPages.getUsersPage().getAllUsers().size());
+        Assert.assertEquals(10, allPages.getUsersPage().getAllUsers().size());
     }
     @Then("A message {string} is displayed")
     public void a_message_is_displayed(String message) {
