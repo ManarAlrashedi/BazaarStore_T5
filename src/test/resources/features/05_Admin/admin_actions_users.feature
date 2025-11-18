@@ -1,10 +1,10 @@
 @Smoke
-Feature: Delete Users as an Admin
+Feature: Admin User Functionality
 
   Background:
     Given user is logged in as a "admin"
 
-  @US14_TC001 @ViewAllUsers @no
+  @US14_TC001 @ViewAllUsers
   Scenario: Admin can view all users
     When admin user navigates to users management page
     Then Admin should see all registered users with Name and Email
@@ -19,9 +19,9 @@ Feature: Delete Users as an Admin
   Scenario: Search functionality with non-existing email
     When admin user navigates to users management page
     And Admin enters "Nouf4@test.com" in search field and clicks search
-    Then A message No users found. is displayed
+    Then A message "No users found." is displayed
 
-    @US15_TC001 @AddNewUser
+  @US15_TC001 @AddNewUser
   Scenario: Admin adds a valid new user
     When admin user navigates to users management page
     And admin user click add users button
