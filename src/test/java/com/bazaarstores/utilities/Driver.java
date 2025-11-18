@@ -20,14 +20,19 @@ public class Driver {
             switch (browser) {
                 case "chrome":
                     ChromeOptions chromeOptions = new ChromeOptions();
+
                     if (ConfigReader.isHeadless()) {
-                        chromeOptions.addArguments("--headless");
+                        chromeOptions.addArguments("--headless=new");
+                        chromeOptions.addArguments("--window-size=1920,1080");
                     }
-                    chromeOptions.addArguments("--start-maximized");
+
                     chromeOptions.addArguments("--disable-notifications");
+                    chromeOptions.addArguments("--disable-gpu");
+                    chromeOptions.addArguments("--no-sandbox");
+                    chromeOptions.addArguments("--disable-dev-shm-usage");
+
                     driver.set(new ChromeDriver(chromeOptions));
                     break;
-                    
                 case "firefox":
                     FirefoxOptions firefoxOptions = new FirefoxOptions();
                     if (ConfigReader.isHeadless()) {

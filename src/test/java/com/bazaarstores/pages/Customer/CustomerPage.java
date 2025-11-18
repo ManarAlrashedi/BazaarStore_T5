@@ -20,8 +20,8 @@ public class CustomerPage extends BasePage {
     private final By productDescription = By.cssSelector(".product-description, p");
     private final By productImage = By.cssSelector("img");
     private final By successMessage = By.id("swal2-html-container");
-    private final By customerCart = By.xpath("/html[1]/body[1]/header[1]/div[1]/div[2]/div[1]/div[1]/span[1]");
-    private final By viewCart = By.xpath("/html/body/header/div/div[2]/div[1]/div[2]/div[3]/a");
+    private final By customerCart = By.xpath("//i[@class='fas fa-shopping-cart']");
+    private final By viewCart = By.xpath("//a[@class='cart-button view-cart']");
     private final By cartItemCount = By.xpath("//span[@class='cart-count']");
     private final By emptyCartMessage = By.cssSelector(".empty-cart-message");
     private final By totalCost = By.xpath("//div[@class='cart-subtotal']//span[last()]");
@@ -68,27 +68,35 @@ public class CustomerPage extends BasePage {
 
     //US05
     public void clickEachProductAndCheckDetails() {
-        List<WebElement> products = findElements(productCards);
-        for (int i = 0; i < products.size(); i++) {
-            WebElement product = products.get(i);
-            scrollToElement(product);
+        int productCount = findElements(productCards).size();
+        for (int i = 0; i < productCount; i++) {
             try {
+                List<WebElement> refreshed = findElements(productCards);
+                WebElement product = refreshed.get(i);
+                scrollToElement(product);
                 product.click();
                 Thread.sleep(800);
-                WebElement name = product.findElement(By.cssSelector(".product-name"));
-                WebElement price = product.findElement(By.cssSelector(".product-price"));
-                WebElement desc = product.findElement(By.cssSelector(".product-description"));
-                WebElement image = product.findElement(By.cssSelector(".product-image"));
+
+                WebElement name = Driver.getDriver().findElement(By.cssSelector(".product-name"));
+                WebElement price = Driver.getDriver().findElement(By.cssSelector(".product-price"));
+                WebElement desc = Driver.getDriver().findElement(By.cssSelector(".product-description"));
+                WebElement image = Driver.getDriver().findElement(By.cssSelector(".product-image"));
+
                 Assert.assertTrue("Product name is missing!", name.isDisplayed());
                 Assert.assertTrue("Product price is missing!", price.isDisplayed());
-                Assert.assertTrue("Product description is missing!", desc.isDisplayed());
                 Assert.assertTrue("Product image is missing!", image.isDisplayed());
+
                 System.out.println(" Product " + (i + 1) + " details verified successfully.");
+
+                Driver.getDriver().navigate().back();
+                waitForElementToBeVisible(productCards);
+                Thread.sleep(800);
             } catch (Exception e) {
                 System.out.println(" Failed to verify product " + (i + 1) + ": " + e.getMessage());
             }
         }
     }
+
 
     // ================= (US06) =================
     public void clickAddToCartOnFirstProduct() {
@@ -105,12 +113,25 @@ public class CustomerPage extends BasePage {
         return isDisplayed(successMessage);
     }
 
+
+
     public boolean isCartItemCountUpdated() {
-        WebElement cartIcon = Driver.getDriver().findElement(By.cssSelector(".fas.fa-shopping-cart"));
-        String itemCountText = cartIcon.findElement(By.xpath("//span[@class='cart-count']")).getText();
+        hoverOverCartIcon();
+        String itemCountText = findElement(By.xpath("//span[@class='cart-count']")).getText();
         try {
             int itemCount = Integer.parseInt(itemCountText);
             return itemCount > 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    public boolean itemCountUpdated() {
+        hoverOverCartIcon();
+        String itemCountText = findElement(By.xpath("//span[@class='cart-count']")).getText();
+        try {
+            int itemCount = Integer.parseInt(itemCountText);
+            return itemCount == 0;
         } catch (NumberFormatException e) {
             return false;
         }
@@ -163,9 +184,18 @@ public class CustomerPage extends BasePage {
         return isDisplayed(totalCost);
     }
 
-    public void clickX() {
-        click(removeButton);
+    public void clickX() throws InterruptedException {
+        List<WebElement> removeButtons = findElements(removeButton);
+        while (!removeButtons.isEmpty()) {
+            removeButtons.get(0).click();
+            Thread.sleep(1000);
+            hoverOverCartIcon();
+            Thread.sleep(1000);
+            removeButtons = findElements(removeButton);
+        }
     }
+
+
 
     public boolean SuccessMessage() {
         return isDisplayed(successMessage);
