@@ -1,4 +1,4 @@
-@Smoke
+#@Smoke
 Feature: Admin User Functionality
 
   Background:

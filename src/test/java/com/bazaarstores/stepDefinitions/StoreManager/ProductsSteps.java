@@ -100,6 +100,7 @@ public class ProductsSteps {
     }
     @When("fills in the product details")
     public void fills_in_the_product_details() {
+        allPages.getProductsPage().refreshPage();
         allPages.getProductsPage().enterNameProduct("Harry Potter")
                 .enterPriceProduct(49.99)
                 .enterStockProduct(100)
@@ -118,6 +119,7 @@ public class ProductsSteps {
     }
     @And("fills in the product details with missing required fields")
     public void fillsInTheProductDetailsWithMissingRequiredFields() {
+        allPages.getProductsPage().refreshPage();
         allPages.getProductsPage().enterNameProduct("Harry Potter")
                 .enterPriceProduct(49.99)
                 .enterSKUProduct("HP1002")
@@ -129,6 +131,7 @@ public class ProductsSteps {
     }
     @And("fills in the product details with duplicate product SKU")
     public void fillsInTheProductDetailsWithDuplicateProductSKU() {
+        allPages.getProductsPage().refreshPage();
         allPages.getProductsPage().enterNameProduct("Harry Potter")
                 .enterPriceProduct(49.99)
                 .enterStockProduct(100)

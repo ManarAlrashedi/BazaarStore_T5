@@ -18,7 +18,7 @@ public class ProductsPage extends BasePage {
     private final By pageTitle = By.tagName("h3");
     private final By productsTable = By.id("table-bordered");
     private final By productsRows = By.xpath("//div[@class='table-responsive']");
-    private final By deletebutton = By.xpath("//tr[td[contains(.,'Hayatesting')]]//i[@class='bi bi-trash3']");
+    private final By deletebutton = By.xpath("//tr[td[contains(.,'Harry Potter')]]//i[@class='bi bi-trash3']");
     private final By confirmdeletebutton = By.xpath("/html/body/div[2]/div/div[6]/button[1]");
     private final By cancelbutton = By.xpath("/html/body/div[2]/div/div[6]/button[3]");
     private final By successMessage = By.xpath("//div[@class='toast-title']");
@@ -30,7 +30,7 @@ public class ProductsPage extends BasePage {
     private final By sku = By.id("sku-column");
     private final By category = By.id("category-column");
     private final By missingRequiredFieldMessage = By.cssSelector(".alert.alert-danger");
-    private final By ProductToBeDeleted = By.xpath("//table//tr//td[contains(text(),'Hayatesting')]");
+    private final By ProductToBeDeleted = By.xpath("//table//tr//td[contains(text(),'Harry Potter')]");
     private final By addNewProductButton = By.cssSelector("button.btn.btn-outline-primary.no-hover.float-start.float-lg-end");
 
     public boolean isProductsPageDisplayed() {
@@ -95,16 +95,16 @@ public class ProductsPage extends BasePage {
     }
 
     public ProductsPage clickDeleteButton() {
-        click(this.deletebutton);
+        clickWithJS(deletebutton);
         return this;
     }
 
        public ProductsPage clickCancelButton() {
-           click(this.cancelbutton);
+        clickWithJS(cancelbutton);
         return this;
     }
     public ProductsPage clickConfirmDeleteButton() {
-        click(this.confirmdeletebutton);
+        clickWithJS(confirmdeletebutton);
         return this;
     }
 
@@ -168,6 +168,7 @@ public class ProductsPage extends BasePage {
 
 //-------------US11-----------------Abdulrahman
     public void clickAddNewProductButton() {
+        //waitForElementToBeClickable(addNewProductButton);
         click(addNewProductButton);
     }
     public ProductsPage enterNameProduct(String name) {

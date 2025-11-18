@@ -107,8 +107,7 @@ public class StoresPage extends BasePage {
     }
 
     public StoresPage edit() {
-        ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].click()",
-                Driver.getDriver().findElement(edit));
+       clickWithJS(edit);
        // Driver.getDriver().findElement(edit).click();
         return this;
     }
