@@ -31,8 +31,8 @@ public class AdminActionsForUsersSteps {
     public void only_the_user_with_matching_email_is_displayed() {
         Assert.assertEquals(1, allPages.getUsersPage().getAllUsers().size());
     }
-    @Then("A message No users found. is displayed")
-    public void a_message_is_displayed() {
+    @Then("A message {string} is displayed")
+    public void a_message_is_displayed(String message) {
         Assert.assertTrue(allPages.getUsersPage().isNoUsersMessageDisplayed());
     }
 
@@ -43,6 +43,7 @@ public class AdminActionsForUsersSteps {
     }
     @And("admin user enters valid {string}, {string},{string},{string} and {string}")
     public void adminUserEntersValidAnd(String name , String email, String password, String passwordConf, String role) {
+        allPages.getUsersPage().refreshPage();
         allPages.getCreateUserPage().enterName(name)
                 .enterEmail(email)
                 .enterPassword(password)
@@ -70,7 +71,9 @@ public class AdminActionsForUsersSteps {
     @When("admin user updates user details with valid {string} and {string}")
     public void admin_user_updates_user_details_with_valid(String updatedName, String updatedEmail) {
         allPages.getCreateUserPage().enterName(updatedName)
-                .enterEmail(updatedEmail);
+                .enterEmail(updatedEmail)
+                .enterPassword("Pasword.12345")
+                .enterPasswordConf("Pasword.12345");
     }
     @When("admin user clicks Save button")
     public void admin_user_clicks_save_button() {

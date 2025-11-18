@@ -67,8 +67,8 @@ public class UsersPage extends BasePage {
     }
 
     public UsersPage clickDeleteUser(String nameUser) {
-        scrollToBottom();
-        clickWithJS(nextPageButton);
+        //scrollToBottom();
+        //clickWithJS(nextPageButton);
         clickWithJS(By.xpath(String.format(deleteButtons, nameUser)));
         return this;
     }
@@ -78,8 +78,8 @@ public class UsersPage extends BasePage {
     }
 
     public boolean isUserStillPresentInListBug(String nameUser) {
-        scrollToBottom();
-        clickWithJS(nextPageButton);
+        //scrollToBottom();
+       // clickWithJS(nextPageButton);
         return isDisplayed(By.xpath(String.format(userName, nameUser)));
     }
     public boolean isUserStillPresentInList(String nameUser) {
@@ -96,8 +96,8 @@ public class UsersPage extends BasePage {
     }
 
     public void clickEditUser(String name) {
-        scrollToBottom();
-        clickWithJS(nextPageButton);
+        //scrollToBottom();
+        //clickWithJS(nextPageButton);
         clickWithJS(By.xpath(String.format(editButton, name)));
     }
 }

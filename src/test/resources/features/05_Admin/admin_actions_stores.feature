@@ -1,5 +1,5 @@
 @Smoke
-Feature: Admin Functionality
+Feature: Admin Store Functionality
 
   Background:
     Given user is logged in as a "admin"
