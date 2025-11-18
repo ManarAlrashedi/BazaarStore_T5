@@ -43,6 +43,7 @@ public class AdminActionsForStoresSteps {
     }
     @When("admin fills the form except the Name field")
     public void adminFillsTheFormExceptTheNameField() {
+        allPages.getCreateStorePage().refreshPage();
         allPages.getCreateStorePage()
                 .enterLocation(faker.address().city())
                 .selectAdmin("Store Manager")
@@ -54,6 +55,7 @@ public class AdminActionsForStoresSteps {
     }
     @When("admin fills the form except the Location field")
     public void adminFillsTheFormExceptTheLocationField() {
+        allPages.getCreateStorePage().refreshPage();
         allPages.getCreateStorePage()
                 .enterName("TeamFive")
                 .selectAdmin("Store Manager")
@@ -66,6 +68,7 @@ public class AdminActionsForStoresSteps {
     }
     @And("admin fills the form except the Description field")
     public void adminFillsTheFormExceptTheDescriptionField() {
+        allPages.getCreateStorePage().refreshPage();
         allPages.getCreateStorePage()
                 .enterName("TeamFive")
                 .enterLocation(faker.address().city())
@@ -79,6 +82,7 @@ public class AdminActionsForStoresSteps {
 
     @When("the Admin fills in all required fields with valid data")
     public void theAdminFillsInAllRequiredFieldsWithValidData() {
+        allPages.getCreateStorePage().refreshPage();
         allPages.getCreateStorePage()
                 .enterName("TeamFive")
                 .enterLocation(faker.address().city())
@@ -91,6 +95,7 @@ public class AdminActionsForStoresSteps {
     }
     @When("Admin fills required fields with valid data except select admin")
     public void adminFillsRequiredFieldsWithValidDataExceptSelectAdmin() {
+        allPages.getCreateStorePage().refreshPage();
         allPages.getCreateStorePage()
                 .enterName("TeamFive")
                 .enterLocation(faker.address().city())

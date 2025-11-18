@@ -1,7 +1,7 @@
 @Smoke @Users
 Feature: Admin User Functionality
 
-  Scenario: User Feature Setup
+  Scenario: User Features
     Given user is logged in as a "admin"
     When admin user navigates to users management page
     Then Admin should see all registered users with Name and Email

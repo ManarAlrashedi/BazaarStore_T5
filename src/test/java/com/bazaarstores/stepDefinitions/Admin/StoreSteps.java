@@ -24,7 +24,7 @@ public class StoreSteps {
 
     @When("user edits name")
     public void user_edits_name() {
-        allPages.getStoresPage().name("books");
+        allPages.getStoresPage().name("booksStore");
     }
 
     @When("user clears name")
