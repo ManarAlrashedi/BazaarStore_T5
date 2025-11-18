@@ -122,17 +122,13 @@ public class CustomerPage extends BasePage {
 
     public boolean isCartItemCountUpdated() {
         hoverOverCartIcon();
-
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15));
         try {
-
             WebElement itemCountElement = wait.until(driver -> {
                 WebElement el = driver.findElement(By.xpath("//span[@class='cart-count']"));
-                return (el.isDisplayed() && !el.getText().isEmpty()) ? el : null;
+                return (!el.getText().isEmpty() && Integer.parseInt(el.getText()) > 0) ? el : null;
             });
-
-            int itemCount = Integer.parseInt(itemCountElement.getText());
-            return itemCount > 0;
+            return true;
         } catch (TimeoutException | NumberFormatException | StaleElementReferenceException e) {
             System.out.println("Cart item count check failed: " + e.getMessage());
             return false;
@@ -154,12 +150,7 @@ public class CustomerPage extends BasePage {
         hoverOverCartIcon();
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15));
         try {
-            return wait.until(driver -> {
-                List<WebElement> items = driver.findElements(By.cssSelector(".cart-item"));
-
-                items.removeIf(item -> !item.isDisplayed());
-                return !items.isEmpty();
-            });
+            return wait.until(driver -> !driver.findElements(By.cssSelector(".cart-item")).isEmpty());
         } catch (TimeoutException e) {
             System.out.println("Cart has no items after waiting: " + e.getMessage());
             return false;
