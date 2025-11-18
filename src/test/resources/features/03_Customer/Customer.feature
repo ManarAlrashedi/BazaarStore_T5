@@ -48,6 +48,14 @@ Feature: Customer Functionalities
     When the customer hovers over the cart icon
     Then the customer should see View Cart button all items with prices and total cost
 
+  @US0901 @CustomerCart
+  Scenario: Customer Confirm items in the cart
+    When customer in the cart
+    And customer click confirm cart
+    Then customer should see the "order successfully" Message
+    And click ok button
+    And  asser the cart is empty now
+
   @US0802 @RemoveItemFromCart
   Scenario: Customer removes an item from the cart
     Given the customer has items in the cart
@@ -62,10 +70,4 @@ Feature: Customer Functionalities
     When the customer hovers over the cart icon
     Then the cart should display a message indicating the cart is empty
 
-  @US0901 @CustomerCart
-  Scenario: Customer Confirm items in the cart
-    When customer in the cart
-    And customer click confirm cart
-    Then customer should see the "order successfully" Message
-    And click ok button
-    And  asser the cart is empty now
+

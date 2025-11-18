@@ -1,7 +1,13 @@
 package com.bazaarstores.pages.Customer;
 
 import com.bazaarstores.pages.BasePage;
+import com.bazaarstores.utilities.Driver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 import static org.junit.Assert.assertEquals;
 
@@ -11,9 +17,10 @@ public class CartPage extends BasePage {
     private final By confirmbutton = By.id("clear-all");
     private final By successmessage = By.id("swal2-html-container");
     private final By okbutton = By.cssSelector("button[class='swal2-confirm swal2-styled']");
-    private final By customerCart = By.xpath("/html[1]/body[1]/header[1]/div[1]/div[2]/div[1]/div[1]/span[1]");
+   // private final By customerCart = By.xpath("//i[@class='fas fa-shopping-cart']");
+    private final By customerCart = By.cssSelector(".cart-icon, .fa-shopping-cart");
     private final By viewCart = By.xpath("/html/body/header/div/div[2]/div[1]/div[2]/div[3]/a");
-    private final By ProductInTheCart = By.id("/html/body/main/div/div[1]");
+    private final By ProductInTheCart = By.xpath("/html/body/main/div/div[1]");
 
     public boolean ProductIsVisable() {
         return isDisplayed(ProductInTheCart);
@@ -23,9 +30,11 @@ public class CartPage extends BasePage {
         return this;
     }
     public CartPage ClickViewCart() {
-        click(this.viewCart);
-        return this;
-    }
+            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
+            WebElement viewCartButton = wait.until(ExpectedConditions.elementToBeClickable(viewCart));
+            viewCartButton.click();
+            return this;
+        }
 
     public CartPage ClickConfirmButton() {
         click(this.confirmbutton);

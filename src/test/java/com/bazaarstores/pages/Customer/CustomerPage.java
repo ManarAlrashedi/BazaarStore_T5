@@ -3,10 +3,11 @@ package com.bazaarstores.pages.Customer;
 import com.bazaarstores.pages.BasePage;
 import com.bazaarstores.utilities.Driver;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 import static java.lang.Thread.sleep;
@@ -20,7 +21,8 @@ public class CustomerPage extends BasePage {
     private final By productDescription = By.cssSelector(".product-description, p");
     private final By productImage = By.cssSelector("img");
     private final By successMessage = By.id("swal2-html-container");
-    private final By customerCart = By.xpath("//i[@class='fas fa-shopping-cart']");
+   // private final By customerCart = By.xpath("//i[@class='fas fa-shopping-cart']");
+   private final By customerCart = By.cssSelector(".cart-icon, .fa-shopping-cart");
     private final By viewCart = By.xpath("//a[@class='cart-button view-cart']");
     private final By cartItemCount = By.xpath("//span[@class='cart-count']");
     private final By emptyCartMessage = By.cssSelector(".empty-cart-message");
@@ -89,8 +91,8 @@ public class CustomerPage extends BasePage {
                 System.out.println(" Product " + (i + 1) + " details verified successfully.");
 
                 Driver.getDriver().navigate().back();
-                waitForElementToBeVisible(productCards);
-                Thread.sleep(800);
+                WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
+                wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(productCards));
             } catch (Exception e) {
                 System.out.println(" Failed to verify product " + (i + 1) + ": " + e.getMessage());
             }
@@ -103,7 +105,10 @@ public class CustomerPage extends BasePage {
         List<WebElement> products = findElements(productCards);
         if (!products.isEmpty()) {
             WebElement firstProduct = products.get(0);
-            WebElement addToCartButton = firstProduct.findElement(By.xpath("//button[@class='add-to-cart']"));
+            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
+            WebElement addToCartButton = wait.until(ExpectedConditions.elementToBeClickable(
+                    firstProduct.findElement(By.xpath(".//button[contains(@class,'add-to-cart')]"))
+            ));
             scrollToElement(addToCartButton);
             addToCartButton.click();
         }
@@ -117,11 +122,19 @@ public class CustomerPage extends BasePage {
 
     public boolean isCartItemCountUpdated() {
         hoverOverCartIcon();
-        String itemCountText = findElement(By.xpath("//span[@class='cart-count']")).getText();
+
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15));
         try {
-            int itemCount = Integer.parseInt(itemCountText);
+
+            WebElement itemCountElement = wait.until(driver -> {
+                WebElement el = driver.findElement(By.xpath("//span[@class='cart-count']"));
+                return (el.isDisplayed() && !el.getText().isEmpty()) ? el : null;
+            });
+
+            int itemCount = Integer.parseInt(itemCountElement.getText());
             return itemCount > 0;
-        } catch (NumberFormatException e) {
+        } catch (TimeoutException | NumberFormatException | StaleElementReferenceException e) {
+            System.out.println("Cart item count check failed: " + e.getMessage());
             return false;
         }
     }
@@ -138,12 +151,17 @@ public class CustomerPage extends BasePage {
     }
 
     public boolean ensureCartHasItems() {
-        WebElement cartIcon = Driver.getDriver().findElement(By.cssSelector(".fas.fa-shopping-cart"));
-        String itemCountText = cartIcon.findElement(By.xpath("//span[@class='cart-count']")).getText();
+        hoverOverCartIcon();
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15));
         try {
-            int itemCount = Integer.parseInt(itemCountText);
-            return itemCount > 0;
-        } catch (NumberFormatException e) {
+            return wait.until(driver -> {
+                List<WebElement> items = driver.findElements(By.cssSelector(".cart-item"));
+
+                items.removeIf(item -> !item.isDisplayed());
+                return !items.isEmpty();
+            });
+        } catch (TimeoutException e) {
+            System.out.println("Cart has no items after waiting: " + e.getMessage());
             return false;
         }
     }

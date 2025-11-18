@@ -13,7 +13,7 @@ public class Hooks {
     @Before
     public void setUp(Scenario scenario) {
         System.out.println("Starting scenario: " + scenario.getName());
-        Driver.getDriver().get(ConfigReader.getBaseUrl());
+        Driver.getDriver().navigate().to(ConfigReader.getBaseUrl());
     }
 
     @After
