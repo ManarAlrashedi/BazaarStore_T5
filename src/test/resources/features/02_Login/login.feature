@@ -1,4 +1,4 @@
-@Regression @Login @Smoke
+@Regression @Login @Smoke1
 Feature: Login Functionality
 
   @HappyPath

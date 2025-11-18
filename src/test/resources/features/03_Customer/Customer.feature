@@ -1,4 +1,4 @@
-@Smoke @Customer
+@Smoke1 @Customer
 Feature: Customer Functionalities
 
   Background:
