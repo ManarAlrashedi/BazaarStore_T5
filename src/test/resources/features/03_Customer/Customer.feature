@@ -1,4 +1,4 @@
-@Smoke1 @Customer
+@Smoke @Customer
 Feature: Customer Functionalities
 
   Background:
@@ -44,7 +44,9 @@ Feature: Customer Functionalities
 
   @US0801 @ViewCustomerCart
   Scenario: Customer views and removed items in their cart
-    Given the customer has items in the cart
+    When the customer clicks Add to Cart on a product
+    Then the cart item count should update automatically
+    #Given the customer has items in the cart
     When the customer hovers over the cart icon
     Then the customer should see View Cart button all items with prices and total cost
 

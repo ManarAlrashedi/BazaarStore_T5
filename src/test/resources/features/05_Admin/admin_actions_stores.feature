@@ -1,4 +1,4 @@
-#@Smoke
+@Smoke @Admin
 Feature: Admin Store Functionality
 
   Background:
@@ -34,7 +34,7 @@ Feature: Admin Store Functionality
   @LocationEmpty
   Scenario: Validation error when Location is empty
     When admin user navigates to store management page
-  And Admin click ADDSTORE button and in create store page
+    And Admin click ADDSTORE button and in create store page
     When admin fills the form except the Location field
     And clicks Submit Button
     Then A validation message for the Location field should be displayed

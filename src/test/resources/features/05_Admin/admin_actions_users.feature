@@ -1,4 +1,4 @@
-#@Smoke
+@Smoke @Admin
 Feature: Admin User Functionality
 
   Background:
@@ -96,8 +96,8 @@ Feature: Admin User Functionality
   @US16_TC002 @EditUserNegative
   Scenario: Validate user edit functionality with invalid data as an Admin
     When admin user navigates to users management page
-    And admin user clicks edit button for a user "lama"
-    And admin user updates user details with valid "Sara" and ""
+    And admin user clicks edit button for a user "Sara"
+    And admin user updates user details with valid "lama" and ""
     And admin user clicks Save button
     Then the user should be see error message
 

@@ -20,6 +20,7 @@ public class ProductsSteps {
     public void store_manager_navigates_to_the_products_page() {
         allPages.getDashboardPage().clickProductsLink();
     }
+
     @Then("verify the list of products displayed")
     public void verify_the_list_of_products_displayed() {
         Assert.assertTrue("Products page should be displayed",
@@ -48,6 +49,7 @@ public class ProductsSteps {
         Assert.assertTrue("This product still exist ! ",
         allPages.getProductsPage().isProductsDisplayed());
     }
+
     @When("confirms the deletion")
     public void confirms_the_deletion() {
         allPages.getProductsPage().clickConfirmDeleteButton();
@@ -67,28 +69,35 @@ public class ProductsSteps {
     public void user_goes_to_the_products_page() {
         allPages.getDashboardPage().clickProductsLink();
     }
+
     @When("user clicks the edit button")
     public void user_clicks_the_edit_button()
     {allPages.getProductsPage().edit();}
+
     @When("user  Edit the price")
     public void user_edit_the_price() {
         allPages.getProductsPage().price(price);
     }
+
     @When("user  Edit the catalog")
     public void user_edit_the_catalog() {
         allPages.getProductsPage().catalog();
     }
+
     @When("user clear the stock")
     public void user_clear_the_stock() {
         allPages.getProductsPage().stock();
     }
+
     @Then("user clicks the submit button")
     public void user_clicks_the_submit_button() {
         allPages.getProductsPage().submit();}
+
     @Then("user should see a success message for the update")
     public void user_should_see_a_success_message_for_the_update() {
         allPages.getProductsPage().successMessage();
     }
+
     @Then("user should see a error message for required field")
     public void user_should_see_a_error_message_for_required_field() {
         allPages.getProductsPage().missingRequiredFieldMessage();
@@ -98,6 +107,7 @@ public class ProductsSteps {
     public void the_store_manager_clicks_the_button() {
         allPages.getProductsPage().clickAddNewProductButton();
     }
+
     @When("fills in the product details")
     public void fills_in_the_product_details() {
         allPages.getProductsPage().refreshPage();
@@ -107,16 +117,19 @@ public class ProductsSteps {
                 .enterSKUProduct("HP1001")
                 .selectCategory("Books");
     }
+
     @When("submits the new product form")
     public void submits_the_new_product_form() {
         allPages.getProductsPage().submit();
     }
+
     @Then("should see a success message for the addition and the product display in list")
     public void should_see_a_success_message_for_the_addition_and_the_product_display_in_list() {
         allPages.getProductsPage().successMessage();
         Assert.assertTrue("New product should be displayed in the list",
                 allPages.getProductsPage().isNewProductDisplayed("Harry Potter"));
     }
+
     @And("fills in the product details with missing required fields")
     public void fillsInTheProductDetailsWithMissingRequiredFields() {
         allPages.getProductsPage().refreshPage();
@@ -125,10 +138,12 @@ public class ProductsSteps {
                 .enterSKUProduct("HP1002")
                 .selectCategory("Books");
     }
+
     @Then("should see a error message for the addition")
     public void shouldSeeAErrorMessageForTheAddition() {
         allPages.getProductsPage().missingRequiredFieldMessage();
     }
+
     @And("fills in the product details with duplicate product SKU")
     public void fillsInTheProductDetailsWithDuplicateProductSKU() {
         allPages.getProductsPage().refreshPage();
@@ -138,6 +153,7 @@ public class ProductsSteps {
                 .enterSKUProduct("HP1001")
                 .selectCategory("Books");
     }
+
     @Then("should see a error message for the duplication")
     public void shouldSeeAErrorMessageForTheDuplication() {
         allPages.getProductsPage().duplicateSKUMessage();
