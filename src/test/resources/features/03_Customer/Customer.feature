@@ -50,6 +50,8 @@ Feature: Customer Functionalities
 
   @US0901 @CustomerCart
   Scenario: Customer Confirm items in the cart
+    When the customer clicks Add to Cart on a product
+    Then the cart item count should update automatically
     When customer in the cart
     And customer click confirm cart
     Then customer should see the "order successfully" Message
@@ -58,6 +60,8 @@ Feature: Customer Functionalities
 
   @US0802 @RemoveItemFromCart
   Scenario: Customer removes an item from the cart
+    When the customer clicks Add to Cart on a product
+    Then the cart item count should update automatically
     Given the customer has items in the cart
     When the customer hovers over the cart icon
     And the customer removes an item from the cart

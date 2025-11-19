@@ -82,8 +82,6 @@ public class CustomerPageSteps {
     }
 
 
-
-
     // ================= US06 ================= Hajar
     @When("the customer clicks Add to Cart on a product")
     public void theCustomerClicksAddToCartOnAProduct() {
@@ -95,7 +93,7 @@ public class CustomerPageSteps {
                 ,allPages.getCustomerPage().isAddToCartSuccessMessageDisplayed());
     }
     @And("the cart item count should update automatically")
-    public void theCartItemCountShouldUpdateAutomatically() {
+    public void theCartItemCountShouldUpdateAutomatically()throws InterruptedException {
         Assert.assertTrue("Cart item count should update"
                 ,allPages.getCustomerPage().isCartItemCountUpdated());
     }
@@ -140,12 +138,12 @@ public class CustomerPageSteps {
         Assert.assertTrue("Success message should be displayed",
                 allPages.getCustomerPage().SuccessMessage());
     }
+
     @Then("the total cost should update accordingly")
     public void the_total_cost_should_update_accordingly() {
         Assert.assertTrue("Total cost should update accordingly",
                 allPages.getCustomerPage().itemCountUpdated());
     }
-
 
     @When("customer in the cart")
     public void customerInTheCart() {
@@ -157,14 +155,17 @@ public class CustomerPageSteps {
     public void customer_click_confirm_cart() {
         allPages.getCartPage().ClickConfirmButton();
     }
+
     @Then("customer should see the {string} Message")
     public void customer_should_see_the_message(String message) {
         allPages.getCartPage().SuccessMessage();
     }
+
     @Then("click ok button")
     public void click_ok_button() {
         allPages.getCartPage().ClickOkButton();
     }
+
     @Then("asser the cart is empty now")
     public void asser_the_cart_is_empty_now() {
         assert true;

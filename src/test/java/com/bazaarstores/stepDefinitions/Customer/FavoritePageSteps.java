@@ -56,21 +56,23 @@ public class FavoritePageSteps {
     }
 
     @Then("the selected product should appear in the My Favorites list")
-    public void the_selected_product_should_appear_in_the_My_Favorites_list(String productName) {
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
+    public void the_selected_product_should_appear_in_the_My_Favorites_list() {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(20));
+        Driver.getDriver().findElement(By.xpath("//a[normalize-space()='My Favorites']")).click();
 
         boolean isProductFavorited = wait.until(driver -> {
-            List<WebElement> favoriteItems = driver.findElements(By.cssSelector(".favorite-item .product-name"));
+            List<WebElement> favoriteItems = driver.findElements(By.cssSelector(".product-name"));
             for (WebElement item : favoriteItems) {
-                if (item.getText().equalsIgnoreCase(productName)) {
+                if (item.getText().equalsIgnoreCase(selectedProductName)) {
                     return true;
                 }
             }
             return false;
         });
 
-        Assert.assertTrue("Favorited product not found in My Favorites: " + productName, isProductFavorited);
+        Assert.assertTrue("Favorited product not found in My Favorites: " + selectedProductName, isProductFavorited);
     }
+
 
     // =================removed =================
 

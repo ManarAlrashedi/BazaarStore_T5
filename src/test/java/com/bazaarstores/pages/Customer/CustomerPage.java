@@ -120,17 +120,15 @@ public class CustomerPage extends BasePage {
 
 
 
-    public boolean isCartItemCountUpdated() {
+    public boolean isCartItemCountUpdated() throws InterruptedException {
+        Thread.sleep(3000);
         hoverOverCartIcon();
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15));
+        String itemCountText = getText(cartItemCount);
         try {
-            WebElement itemCountElement = wait.until(driver -> {
-                WebElement el = driver.findElement(By.xpath("//span[@class='cart-count']"));
-                return (!el.getText().isEmpty() && Integer.parseInt(el.getText()) > 0) ? el : null;
-            });
-            return true;
-        } catch (TimeoutException | NumberFormatException | StaleElementReferenceException e) {
-            System.out.println("Cart item count check failed: " + e.getMessage());
+            int itemCount = Integer.parseInt(itemCountText);
+            System.out.println(itemCount);
+            return itemCount > 0;
+        } catch (NumberFormatException e) {
             return false;
         }
     }
@@ -203,7 +201,6 @@ public class CustomerPage extends BasePage {
             removeButtons = findElements(removeButton);
         }
     }
-
 
 
     public boolean SuccessMessage() {

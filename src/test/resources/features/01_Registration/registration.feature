@@ -1,4 +1,4 @@
-@Registration @Smoke
+@Registration @Smoke1
 Feature: Registration Feature
 
   Background:
