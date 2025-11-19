@@ -5,7 +5,6 @@ Feature: Registration Feature
     Given user goes to homepage
     When user clicks registration link
 
-  @Smoke
   @HappyPathRegistration
   Scenario: Registration Happy Path
     And user enters email for sign up "faker"
@@ -16,7 +15,6 @@ Feature: Registration Feature
     Then user should see success message for registration
     And assert the registration via API
 
-  @Smoke
   @NegativeRegistration
   Scenario: Registration Negative with invalid name
     And user enters email for sign up "faker"
@@ -27,7 +25,6 @@ Feature: Registration Feature
     Then user should see invalid name error message
     And assert the negative registration via API using email "faker"
 
-  @Smoke
   @NegativeRegistration
   Scenario: Registration Negative with invalid email
     And user enters email for sign up "invalid_email.com"
@@ -38,7 +35,6 @@ Feature: Registration Feature
     Then user should see invalid email error message
     And assert the negative registration via API using email "invalid_email.com"
 
-  @Smoke
   @NegativeRegistration
   Scenario: Registration Negative with missing name
     And user enters email for sign up "faker"
@@ -48,7 +44,6 @@ Feature: Registration Feature
     Then user should see name is required error message
     And assert the negative registration via API using email "faker"
 
-  @Smoke
   @NegativeRegistration
   Scenario: Registration Negative with password's length is less
     And user enters email for sign up "faker"
@@ -59,7 +54,6 @@ Feature: Registration Feature
     Then user should see password is short error message
     And assert the negative registration via API using email "faker"
 
-  @Smoke
   @NegativeRegistration
   Scenario: Registration Negative with Confirm Password field does not match
     And user enters email for sign up "faker"

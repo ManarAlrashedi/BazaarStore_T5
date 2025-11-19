@@ -1,7 +1,6 @@
-@Regression @Login
+@Regression @Login @Smoke
 Feature: Login Functionality
 
-  @Smoke
   @HappyPath
   Scenario: Successful login with valid credentials
     When user enters email "customer@sda.com" and password "Password.12345"
@@ -9,7 +8,6 @@ Feature: Login Functionality
     Then user should be logged in successfully
     And assert the successful login via API
 
-  @Smoke
   @Negative
   Scenario: Login with empty email
     When user enters email "" and password "Password.12345"
@@ -17,7 +15,6 @@ Feature: Login Functionality
     Then user should see empty "email" error message
     And assert the negative login via API
 
-  @Smoke
   @Negative
   Scenario: Login with empty password
     When user enters email "customer@sda.com" and password ""
@@ -25,7 +22,6 @@ Feature: Login Functionality
     Then user should see empty "password" error message
     And assert the negative login via API using email "customer@sda.com"
 
-  @Smoke
   @Negative
   Scenario: Login with empty email and password
     When user enters email "" and password ""
@@ -33,7 +29,6 @@ Feature: Login Functionality
     Then user should see empty "email" error message
     And assert the negative login via API
 
-  @Smoke
   @Negative
   Scenario: Login with email not available
     When user enters email "invalid@test.com" and password "WrongPassword"
@@ -42,7 +37,6 @@ Feature: Login Functionality
     And user should remain on login page
     And assert the negative login via API
 
-  @Smoke
   @Negative
   Scenario: Login without @ symbol
     When user enters email "customersda.com" and password "Password.12345"
@@ -51,7 +45,6 @@ Feature: Login Functionality
     And user should remain on login page
     And assert the negative login via API
 
-  @Smoke
   @Negative
   Scenario: Login with an incorrect password
     When user enters email "customer@sda.com" and password "WrongPassword"

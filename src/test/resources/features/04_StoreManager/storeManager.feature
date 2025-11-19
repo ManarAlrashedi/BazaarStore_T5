@@ -81,3 +81,8 @@ Feature: Store Manager Functionality
     When store manager navigates to the products page
     And the catalog should reflect the updated state
     Then assert the product been removed via API
+
+
+  @Smoke
+  Scenario:Successful login with valid credentials
+    Given user is logged in as a "store manager"

@@ -108,3 +108,7 @@ Feature: Admin Store Functionality
     And admin user confirms the deletion
     Then the store "books" should be removed from the store list
     And assert the store deletion via API
+
+  @Smoke
+  Scenario:Successful login with valid credentials
+    Given user is logged in as a "admin"
