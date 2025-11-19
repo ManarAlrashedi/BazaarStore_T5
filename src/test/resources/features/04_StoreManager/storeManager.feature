@@ -83,6 +83,9 @@ Feature: Store Manager Functionality
     Then assert the product been removed via API
 
 
-  @Smoke
-  Scenario:Successful login with valid credentials
-    Given user is logged in as a "store manager"
+  @Smoke @HappyPath
+  Scenario: Successful login with valid credentials
+    When user enters email "storemanager@sda.com" and password "Password.12345"
+    And user clicks login button
+    Then user should be logged in successfully
+    And assert the successful login via API

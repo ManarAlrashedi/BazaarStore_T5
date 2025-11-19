@@ -121,6 +121,9 @@ Feature: Admin User Functionality
     Then the user "sara@sda.com" should still be present in the users list
     And assert the user deletion via API
 
-  @Smoke
-  Scenario:Successful login with valid credentials
-    Given user is logged in as a "admin"
+  @Smoke @HappyPath
+  Scenario: Successful login with valid credentials
+    When user enters email "admin@sda.com" and password "Password.12345"
+    And user clicks login button
+    Then user should be logged in successfully
+    And assert the successful login via API
