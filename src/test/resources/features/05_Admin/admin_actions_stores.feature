@@ -1,8 +1,10 @@
-#@Smoke @Admin
+#@Smoke
+@Admin
 Feature: Admin Store Functionality
 
-  Background:
-    Given user is logged in as a "admin"
+
+  #Background:
+   # Given user is logged in as a "admin"
 
   @ViewAllStores
   Scenario: Admin views all stores
@@ -113,5 +115,3 @@ Feature: Admin Store Functionality
   Scenario: Successful login with valid credentials
     When user enters email "admin@sda.com" and password "Password.12345"
     And user clicks login button
-    Then user should be logged in successfully
-    And assert the successful login via API

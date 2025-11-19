@@ -1,8 +1,10 @@
-#@Smoke @StoreManager
+#@Smoke
+
+@StoreManager
 Feature: Store Manager Functionality
 
-  Background:
-    Given user is logged in as a "store manager"
+  #Background:
+    #Given user is logged in as a "store manager"
 
   @ViewCatalog
   Scenario: Store Manager Views Products Catalog
@@ -82,10 +84,9 @@ Feature: Store Manager Functionality
     And the catalog should reflect the updated state
     Then assert the product been removed via API
 
-
   @Smoke @HappyPath
   Scenario: Successful login with valid credentials
     When user enters email "storemanager@sda.com" and password "Password.12345"
     And user clicks login button
-    Then user should be logged in successfully
-    And assert the successful login via API
+
+

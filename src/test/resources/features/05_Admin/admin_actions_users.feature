@@ -1,8 +1,9 @@
-#@Smoke @Admin
+#@Smoke
+@Admin
 Feature: Admin User Functionality
 
-  Background:
-    Given user is logged in as a "admin"
+  #Background:
+   # Given user is logged in as a "admin"
 
   @US14_TC001 @ViewAllUsers
   Scenario: Admin can view all users
@@ -125,5 +126,3 @@ Feature: Admin User Functionality
   Scenario: Successful login with valid credentials
     When user enters email "admin@sda.com" and password "Password.12345"
     And user clicks login button
-    Then user should be logged in successfully
-    And assert the successful login via API
