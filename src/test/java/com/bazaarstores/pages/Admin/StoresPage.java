@@ -136,7 +136,7 @@ public class StoresPage extends BasePage {
     public StoresPage admins() {
         WebElement categoryDropdown = Driver.getDriver().findElement(By.id("admin-column"));
         Select select = new Select(categoryDropdown);
-        select.selectByIndex(0);
+        select.selectByIndex(1);
         StoreSteps.admin=select.getFirstSelectedOption().getText();
         return this; }
 

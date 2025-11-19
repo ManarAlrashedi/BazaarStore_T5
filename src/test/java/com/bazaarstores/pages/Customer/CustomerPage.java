@@ -74,6 +74,9 @@ public class CustomerPage extends BasePage {
         for (int i = 0; i < productCount; i++) {
             try {
                 List<WebElement> refreshed = findElements(productCards);
+                for (WebElement element : refreshed) {
+                    System.out.println(element.getText());
+                }
                 WebElement product = refreshed.get(i);
                 scrollToElement(product);
                 product.click();
@@ -90,9 +93,10 @@ public class CustomerPage extends BasePage {
 
                 System.out.println(" Product " + (i + 1) + " details verified successfully.");
 
-                Driver.getDriver().navigate().back();
+               // Driver.getDriver().navigate().back();
                 WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
                 wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(productCards));
+
             } catch (Exception e) {
                 System.out.println(" Failed to verify product " + (i + 1) + ": " + e.getMessage());
             }
