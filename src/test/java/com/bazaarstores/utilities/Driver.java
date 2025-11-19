@@ -22,7 +22,7 @@ public class Driver {
                     ChromeOptions chromeOptions = new ChromeOptions();
 
                     if (ConfigReader.isHeadless()) {
-                       // chromeOptions.addArguments("--headless=new");
+                        chromeOptions.addArguments("--headless=new");
                         chromeOptions.addArguments("--window-size=1920,1080");
                     }
 

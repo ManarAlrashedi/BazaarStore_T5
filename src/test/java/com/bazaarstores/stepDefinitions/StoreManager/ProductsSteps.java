@@ -17,7 +17,7 @@ public class ProductsSteps {
     public static String name;
 
     @When("store manager navigates to the products page")
-    public void store_manager_navigates_to_the_products_page() {
+    public void store_manager_navigates_to_the_products_page() throws InterruptedException {
         allPages.getDashboardPage().clickProductsLink();
     }
 

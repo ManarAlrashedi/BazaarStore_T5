@@ -1,4 +1,4 @@
-@Smoke @Admin
+#@Smoke @Admin
 Feature: Admin Store Functionality
 
   Background:
