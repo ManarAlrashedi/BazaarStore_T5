@@ -1,4 +1,4 @@
-#@Smoke @StoreManager
+@Smoke @StoreManager
 Feature: Store Manager Functionality
 
   Background:
@@ -82,7 +82,3 @@ Feature: Store Manager Functionality
     And the catalog should reflect the updated state
     Then assert the product been removed via API
 
-
-  @Smoke
-  Scenario:Successful login with valid credentials
-    Given user is logged in as a "store manager"

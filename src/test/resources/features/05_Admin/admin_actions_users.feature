@@ -1,4 +1,4 @@
-#@Smoke @Admin
+@Smoke @Admin
 Feature: Admin User Functionality
 
   Background:
@@ -121,6 +121,3 @@ Feature: Admin User Functionality
     Then the user "sara@sda.com" should still be present in the users list
     And assert the user deletion via API
 
-  @Smoke
-  Scenario:Successful login with valid credentials
-    Given user is logged in as a "admin"

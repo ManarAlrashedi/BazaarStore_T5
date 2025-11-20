@@ -1,4 +1,4 @@
-#@Smoke @Admin
+@Smoke @Admin
 Feature: Admin Store Functionality
 
   Background:
@@ -109,6 +109,3 @@ Feature: Admin Store Functionality
     Then the store "books" should be removed from the store list
     And assert the store deletion via API
 
-  @Smoke
-  Scenario:Successful login with valid credentials
-    Given user is logged in as a "admin"
